@@ -116,9 +116,26 @@ footer .sig{font:italic 500 30px var(--serif);color:var(--acc2);margin-bottom:12
 .reveal{opacity:0;transform:translateY(30px);transition:1s cubic-bezier(.2,.8,.2,1)}
 .reveal.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}}
+/* ===== 3D mode: dark glass over WebGL canvas ===== */
+#gl{position:fixed;inset:0;width:100%;height:100%;z-index:0;display:block}
+body{background:#081a1f;color:#e3efec}
+main,footer{position:relative;z-index:1}
+section,footer,#hero,#share,#students{background:transparent!important}
+section{min-height:100vh;display:flex;align-items:center}
+section>.wrap{width:100%}
+.mute{color:#93aaa6}
+.credo article,.card,.cr,.tl,.filt button{background:rgba(10,32,38,.6)!important;border:1px solid rgba(126,232,210,.18)!important;color:#e3efec;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.tl{padding:26px 20px 6px 30px;border-radius:20px;border-left:2px solid rgba(126,232,210,.3)!important;margin-left:0}
+.filt button.on{background:var(--acc)!important;border-color:var(--acc)!important}
+.card .ph{background:#fff}
+.stats div{backdrop-filter:blur(10px)}
+.scene-tag{position:fixed;right:22px;bottom:22px;z-index:2;font:600 11px var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--acc2);opacity:.75;pointer-events:none}
+@media(max-width:800px){.scene-tag{display:none}}
 </style>
 </head>
 <body>
+<canvas id="gl" aria-hidden="true"></canvas>
+<div class="scene-tag" id="sceneTag"></div>
 <div id="bar"></div>
 <nav id="nav">
   <div class="nm">М. Кожагулов</div>
@@ -131,7 +148,6 @@ footer .sig{font:italic 500 30px var(--serif);color:var(--acc2);margin-bottom:12
 
 <main>
 <section id="hero" data-step="0" data-sec="35">
-  <canvas id="mol" aria-hidden="true"></canvas>
   <div class="wrap">
     <div class="in">
       <div class="k" data-t="contest"></div>
@@ -296,16 +312,9 @@ document.addEventListener("click",e=>{const c=e.target.closest(".card,.cr,.pic")
 $("#lb .x").onclick=lbClose;$("#lb").onclick=e=>{if(e.target.id==="lb")lbClose()};
 $("#lb .pv").onclick=()=>{lbI=(lbI-1+lbList.length)%lbList.length;lbShow()};$("#lb .nx").onclick=()=>{lbI=(lbI+1)%lbList.length;lbShow()};
 
-/* molecules */
-(()=>{const c=$("#mol"),x=c.getContext("2d"),N=34;let W,H,p=[];
-function rs(){W=c.width=c.offsetWidth*devicePixelRatio;H=c.height=c.offsetHeight*devicePixelRatio}rs();addEventListener("resize",rs);
-for(let i=0;i<N;i++)p.push({x:Math.random(),y:Math.random(),vx:(Math.random()-.5)*.0004,vy:(Math.random()-.5)*.0004,r:3+Math.random()*7,c:Math.random()<.25?"#f0a83c":Math.random()<.5?"#7ee8d2":"#1fb59a"});
-const still=matchMedia("(prefers-reduced-motion:reduce)").matches;
-(function f(){x.clearRect(0,0,W,H);const d=devicePixelRatio;
- for(const a of p){if(!still){a.x+=a.vx;a.y+=a.vy;if(a.x<0||a.x>1)a.vx*=-1;if(a.y<0||a.y>1)a.vy*=-1}}
- for(let i=0;i<N;i++)for(let j=i+1;j<N;j++){const a=p[i],b=p[j],dx=(a.x-b.x)*W,dy=(a.y-b.y)*H,l=Math.hypot(dx,dy);if(l<150*d){x.strokeStyle=`rgba(126,232,210,${.35*(1-l/(150*d))})`;x.lineWidth=1.5*d;x.beginPath();x.moveTo(a.x*W,a.y*H);x.lineTo(b.x*W,b.y*H);x.stroke()}}
- for(const a of p){x.fillStyle=a.c;x.globalAlpha=.75;x.beginPath();x.arc(a.x*W,a.y*H,a.r*d,0,7);x.fill();x.globalAlpha=1}
- if(!still)requestAnimationFrame(f)})()})();
+/* scene caption (bottom-right) */
+const SCN=[["Кофеин C₈H₁₀N₄O₂","Кофеин C₈H₁₀N₄O₂"],["Атом құрылысы","Строение атома"],["Бензол C₆H₆","Бензол C₆H₆"],["NaCl кристалы","Кристалл NaCl"],["Менделеев кестесі","Таблица Менделеева"],["Су молекулалары H₂O","Молекулы воды H₂O"],["ДНҚ","ДНК"]];
+$$("[data-step]").forEach((s,i)=>new IntersectionObserver(es=>{if(es[0].isIntersecting)$("#sceneTag").textContent="◆ "+SCN[i][lang==="kz"?0:1]},{threshold:.5}).observe(s));
 
 /* 5-minute presentation mode */
 const steps=$$("[data-step]");let presOn=false,cur=0,left=300,tick;
@@ -322,5 +331,6 @@ addEventListener("keydown",e=>{if($("#lb").classList.contains("on")){if(e.key===
 steps.forEach(s=>new IntersectionObserver(es=>{if(es[0].isIntersecting&&presOn){cur=steps.indexOf(s);pUpd()}},{threshold:.35}).observe(s));
 render();
 </script>
+<script type="module" src="scene3d.js"></script>
 </body>
 </html>
