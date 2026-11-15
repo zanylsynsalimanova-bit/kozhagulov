@@ -2,280 +2,149 @@
 <html lang="kk">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Кожагулов М.С. · Химия пәні мұғалімі</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-:root{--deep:#071519;--ink:#e6f2ef;--mute:#93aaa6;--acc:#1fb59a;--acc2:#7ee8d2;--amber:#f0a83c;
---serif:"Cormorant Garamond",Georgia,serif;--sans:Inter,system-ui,"Segoe UI",sans-serif}
-*{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--deep);color:var(--ink);font:16px/1.6 var(--sans);overflow-x:hidden}
-img{display:block;max-width:100%}
-em{font-style:italic;color:var(--acc2)}
-button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
-#gl{position:fixed;inset:0;width:100%;height:100%;z-index:0;display:block}
-#flash{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:0}
-.chap{position:relative;z-index:0}
-.k{font:600 12px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--acc2)}
-.ov{position:fixed;inset:0;z-index:2;display:flex;align-items:center;padding:90px 6vw 60px;opacity:0;visibility:hidden;pointer-events:none}
-.ov.live{pointer-events:auto}
-.col{max-width:520px}
-.ov.right{justify-content:flex-end}
-.ov h2{font:500 clamp(40px,5.6vw,78px)/1 var(--serif);margin:16px 0 22px}
-.big{font:500 clamp(54px,9vw,140px)/.92 var(--serif);letter-spacing:-.01em}
-.big span{display:block;font-style:italic;color:var(--acc2);font-size:.42em;margin-top:14px;letter-spacing:0}
-.sub{color:#cfe3df;font-size:16px;margin-top:22px}
-.stats{display:flex;gap:30px;margin-top:34px;flex-wrap:wrap}
-.stats b{display:block;font:500 46px/1 var(--serif);color:var(--acc2)}
-.stats span{font-size:12px;color:var(--mute)}
-.hint{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);text-align:center}
-.hint i{display:block;width:1px;height:38px;margin:10px auto 0;background:linear-gradient(var(--acc2),transparent);animation:dr 1.8s infinite}
-@keyframes dr{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
-.quote{font:italic 500 clamp(26px,3vw,40px)/1.25 var(--serif)}
-.lines{margin-top:26px;display:grid;gap:12px}
-.lines p{padding-left:16px;border-left:2px solid var(--acc);color:#d6e8e4}
-.av{width:110px;height:110px;border-radius:50%;object-fit:cover;object-position:60% 30%;border:2px solid var(--acc2);margin-bottom:22px}
-.it{display:grid;grid-template-columns:52px 1fr;gap:14px;padding:14px 0;border-top:1px solid rgba(126,232,210,.18);opacity:0;transform:translateY(18px);transition:.6s cubic-bezier(.2,.8,.2,1)}
-.it.on{opacity:1;transform:none}
-.it b{font:500 34px/1 var(--serif);color:var(--acc2)}
-.it h3{font:500 25px/1.15 var(--serif)}
-.it p{font-size:14px;color:var(--mute);margin-top:4px}
-.it small{font-size:13px;color:var(--mute)}
-.thumbs{display:flex;gap:10px;margin-top:18px}
-.thumbs img{width:74px;height:96px;object-fit:cover;object-position:top;border-radius:8px;background:#fff;cursor:zoom-in;opacity:.9}
-.thumbs img:hover{opacity:1;transform:translateY(-3px)}
-#ov4{flex-direction:column;justify-content:space-between;align-items:stretch;padding-bottom:7vh}
-#ov4 .head{text-align:center}
-.strip{display:flex;gap:18px;will-change:transform}
-.card{flex:0 0 250px;background:rgba(10,32,38,.72);border:1px solid rgba(126,232,210,.2);border-radius:16px;overflow:hidden;backdrop-filter:blur(12px);cursor:zoom-in;text-align:left}
-.card .ph{aspect-ratio:4/3;background:#fff;overflow:hidden}
-.card .ph img{width:100%;height:100%;object-fit:cover;object-position:top}
-.card .cap{padding:12px 14px;font-size:13px;line-height:1.4}
-.card .cap b{display:flex;justify-content:space-between;font:600 10px var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--acc2);margin-bottom:5px}
-.card .cap strong{font:600 18px var(--serif);display:block}
-.cards3{display:grid;gap:12px;margin-top:10px}
-.cards3 .card{display:grid;grid-template-columns:110px 1fr;flex:none}
-.cards3 .card .ph{aspect-ratio:auto;height:100%}
-#ov6{justify-content:flex-start}
-
-#nav{position:fixed;inset:0 0 auto;z-index:10;display:flex;align-items:center;gap:20px;padding:16px 6vw}
-#nav .nm{font:600 20px var(--serif);margin-right:auto}
-#nav .links{display:flex;gap:20px}
-#nav .links button{font-size:13px;color:#cfe3df;opacity:.75}
-#nav .links button:hover,#nav .links button.on{opacity:1;color:var(--acc2)}
-.lang{display:flex;border:1px solid rgba(126,232,210,.45);border-radius:99px;overflow:hidden}
-.lang button{padding:5px 11px;font-size:12px}
-.lang button.on{background:var(--acc);color:#fff}
-.btn{padding:8px 16px;border-radius:99px;background:var(--acc);color:#fff;font-weight:600;font-size:13px}
-@media(max-width:900px){#nav .links{display:none}}
-#bar{position:fixed;top:0;left:0;height:2px;background:var(--acc2);z-index:11;width:0}
-.dots{position:fixed;right:22px;top:50%;transform:translateY(-50%);z-index:10;display:grid;gap:12px}
-.dots button{width:8px;height:8px;border-radius:50%;background:rgba(126,232,210,.3);transition:.3s}
-.dots button.on{background:var(--acc2);transform:scale(1.5)}
-
-@media(max-width:800px){
-  .ov{padding:80px 20px 40px;align-items:flex-end}.ov.right{justify-content:flex-start}
-  .col{background:rgba(7,21,25,.72);backdrop-filter:blur(10px);padding:20px;border-radius:18px;max-width:none;width:100%}
-  #ov0 .col{background:none;backdrop-filter:none;padding:0}
-  .stats{gap:18px}.stats b{font-size:34px}.dots{display:none}
-  .card{flex-basis:200px}
-}
-
-#lb{position:fixed;inset:0;z-index:100;background:rgba(5,12,15,.95);display:none;align-items:center;justify-content:center;flex-direction:column;padding:30px}
-#lb.on{display:flex}
-#lb img{max-width:94vw;max-height:82vh;border-radius:6px;object-fit:contain;background:#fff}
-#lb p{color:#d6e8e4;margin-top:14px;font-size:15px;text-align:center;max-width:800px}
-#lb .x{position:absolute;top:14px;right:20px;font-size:34px;color:#fff}
-#lb .ar{position:absolute;top:50%;font-size:44px;color:#fff;opacity:.7;padding:20px}
-#lb .pv{left:6px}#lb .nx{right:6px}
-#pres{position:fixed;left:50%;bottom:18px;transform:translate(-50%,160%);z-index:60;display:flex;align-items:center;gap:14px;background:rgba(7,21,25,.95);padding:10px 12px 10px 20px;border-radius:99px;border:1px solid rgba(126,232,210,.2);transition:.4s}
-#pres.on{transform:translate(-50%,0)}
-#pres .clock{font:600 22px var(--sans);font-variant-numeric:tabular-nums;color:var(--acc2);min-width:62px}
-#pres .clock.warn{color:#ff8a65}
-#pres .step{font-size:13px;white-space:nowrap;max-width:220px;overflow:hidden;text-overflow:ellipsis}
-#pres .step small{display:block;color:var(--mute);font-size:11px}
-#pres button{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.08)}
-#pres button:hover{background:var(--acc)}
-</style>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Болашақ химиядан басталады · Меирбек Кожагулов</title>
+<meta name="description" content="Химия пәнінің мұғалімі Меирбек Кожагуловтың портфолиосы">
+<meta name="theme-color" content="#031615">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800;900&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/photos/teacher-testtube.jpg">
+<script>
+/* decide mode before first paint: static = reduced motion (WebGL check happens in scene3d.js) */
+(function(){var d=document.documentElement;d.classList.add('js');
+ if(matchMedia('(prefers-reduced-motion: reduce)').matches||/[?&]static\b/.test(location.search))d.classList.add('static');})();
+</script>
+<link rel="stylesheet" href="style.css">
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 </head>
 <body>
+<a class="skip" href="#about">Мазмұнға өту</a>
 <canvas id="gl" aria-hidden="true"></canvas>
-<div id="flash"></div>
-<div id="bar"></div>
-<nav id="nav">
-  <div class="nm">М. Кожагулов</div>
-  <div class="links" id="links"></div>
-  <div class="lang"><button data-l="kz">ҚАЗ</button><button data-l="ru">РУС</button></div>
-  <button class="btn" id="presBtn">▶ 5 мин</button>
-</nav>
-<div class="dots" id="dots"></div>
+<div id="veil" aria-hidden="true"></div>
 
-<!-- scroll spacers: one per chapter -->
-<div class="chap" style="height:240vh" data-sec="35"></div>
-<div class="chap" style="height:260vh" data-sec="35"></div>
-<div class="chap" style="height:380vh" data-sec="80"></div>
-<div class="chap" style="height:360vh" data-sec="55"></div>
-<div class="chap" style="height:420vh" data-sec="50"></div>
-<div class="chap" style="height:260vh" data-sec="30"></div>
-<div class="chap" style="height:200vh" data-sec="15"></div>
+<header class="nav" id="nav">
+  <a class="brand" href="#home" data-go="0" aria-label="Басы">М<span>К</span></a>
+  <nav aria-label="Бөлімдер">
+    <ul>
+      <li><a href="#about" data-go="1">Мен туралы</a></li>
+      <li><a href="#approach" data-go="2">Ұстаным</a></li>
+      <li><a href="#students" data-go="3">Жетістіктер</a></li>
+      <li><a href="#growth" data-go="4">Тәжірибе</a></li>
+      <li><a href="#final" data-go="5">Қорытынды</a></li>
+    </ul>
+  </nav>
+  <div class="progress" aria-hidden="true"><i id="bar"></i></div>
+</header>
 
-<!-- fixed overlays, opacity driven by scroll -->
-<div class="ov" id="ov0"><div class="col">
-  <div class="k" data-t="contest"></div>
-  <h1 class="big" style="margin-top:20px">Кожагулов<br>Меирбек <span>Сансызбаевич</span></h1>
-  <div class="sub" data-t="subj"></div>
-  <div class="stats">
-    <div><b>9</b><span data-t="st0"></span></div><div><b>11</b><span data-t="st1"></span></div>
-    <div><b>7</b><span data-t="st2"></span></div><div><b>3</b><span data-t="st3"></span></div>
-  </div></div>
-  <div class="hint"><span data-t="scroll"></span><i></i></div>
-</div>
+<main>
+<!-- 1 · HERO -->
+<section class="scene" id="home" data-h="300" aria-labelledby="h-home">
+  <div class="stick">
+    <img class="hero-photo" src="assets/photos/teacher-testtube.jpg" alt="Химия мұғалімі Меирбек Кожагулов зертханада қолында сынауығы бар" width="960" height="1280">
+    <div class="panel hero-text" data-fade="hero">
+      <p class="kicker">МЕИРБЕК <span class="el" title="Калий, 19"><i>19</i>К</span>ОЖАГУЛОВ</p>
+      <h1 id="h-home" class="mega"><span>БОЛАШАҚ</span><span>ХИМИЯДАН</span><span>БАС<span class="el" title="Тантал, 73"><i>73</i>Та</span>ЛАДЫ</span></h1>
+      <p class="lead">Химия пәнінің мұғалімі</p>
+      <a class="btn" href="#about" data-go="1">Портфолионы қарау <b aria-hidden="true">↓</b></a>
+    </div>
+    <p class="scroll-hint" aria-hidden="true">Төмен айналдырыңыз<i></i></p>
+  </div>
+</section>
 
-<div class="ov right" id="ov1"><div class="col">
-  <img class="av z" src="img/hero.jpg" data-title="" alt="">
-  <div class="k" data-t="credoK"></div>
-  <p class="quote" style="margin-top:16px" data-t="motto"></p>
-  <div class="lines"><p data-t="mis"></p><p data-t="goal"></p></div>
-</div></div>
+<!-- 2 · ABOUT -->
+<section class="scene" id="about" data-h="260" aria-labelledby="h-about">
+  <div class="stick">
+    <div class="panel" data-fade>
+      <p class="kicker">01 · Тамшының ішінде</p>
+      <h2 id="h-about">Мен туралы</h2>
+      <p class="text">Мен — Меирбек Кожагулов, Талдысай орта мектебінің химия пәнінің мұғалімімін. Педагогикалық еңбек өтілім — 9 жыл, біліктілік санатым — педагог-модератор.</p>
+      <ul class="facts">
+        <li><b>Жоғары</b><span>білім</span></li>
+        <li><b>9 жыл</b><span>еңбек өтілі</span></li>
+        <li><b>Педагог-модератор</b><span>біліктілік санаты</span></li>
+        <li><b>Талдысай</b><span>орта мектебі</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
 
-<div class="ov" id="ov2"><div class="col" style="max-width:560px">
-  <div class="k" data-t="critK"></div><h2 data-t="critH"></h2>
-  <div id="critList"></div>
-</div></div>
+<!-- 3 · APPROACH (H2O) -->
+<section class="scene" id="approach" data-h="320" aria-labelledby="h-approach">
+  <div class="stick">
+    <div class="panel wide" data-fade>
+      <p class="kicker">02 · H₂O моделі</p>
+      <h2 id="h-approach">Менің педагогикалық ұстанымым</h2>
+      <p class="text quote">Әр оқушының бойындағы қабілетті ашу, ғылымға қызығушылығын ояту және алған білімін өмірде қолдана алатын тұлға қалыптастыру — менің басты педагогикалық ұстанымым.</p>
+      <ol class="steps" data-steps>
+        <li><b>01</b>Сұрақ қою</li>
+        <li><b>02</b>Болжам жасау</li>
+        <li><b>03</b>Тәжірибе жүргізу</li>
+        <li><b>04</b>Қорытындыны дәлелдеу</li>
+      </ol>
+      <p class="text small" data-late>Химия сабақтарында теорияны күнделікті өмірмен байланыстырып, зерттеушілік дағдыларды, сыни ойлауды және функционалдық сауаттылықты дамытуға басымдық беремін.</p>
+    </div>
+  </div>
+</section>
 
-<div class="ov right" id="ov3"><div class="col" style="max-width:560px">
-  <div class="k" data-t="shK"></div><h2 data-t="shH"></h2>
-  <div id="tl"></div>
-  <div class="thumbs" id="thumbs"></div>
-</div></div>
+<!-- 4 · STUDENTS GALLERY -->
+<section class="scene" id="students" data-h="320" aria-labelledby="h-students">
+  <div class="stick">
+    <div class="panel full" data-fade>
+      <p class="kicker">03 · Галерея</p>
+      <h2 id="h-students">Оқушылардың жетістіктері</h2>
+      <ul class="gallery" id="gallery">
+        <li><button class="doc" data-doc="st1">
+          <span class="glass"><img src="assets/students/2023-umirzhanova-alaman-oblys-1-dip.jpg" alt="" loading="lazy" width="960" height="720"></span>
+          <span class="meta"><em>2023</em><strong>Умиржанова Аружан</strong>Химия пәнінен облыстық «Аламан» олимпиадасы<b class="badge">І дәрежелі диплом</b></span></button></li>
+        <li><button class="doc" data-doc="st2">
+          <span class="glass"><img src="assets/students/2024-alaman-audan-9-synyp-3-oryn.jpg" alt="" loading="lazy" width="1280" height="930"></span>
+          <span class="meta"><em>2023–2024 оқу жылы</em>«Аламан» олимпиадасының аудандық кезеңі, 9-сынып<b class="badge">ІІІ орын</b></span></button></li>
+        <li><button class="doc" data-doc="st3">
+          <span class="glass"><img src="assets/students/2020-resp-olimp-audan-10-synyp-3-oryn.jpg" alt="" loading="lazy" width="1280" height="930"></span>
+          <span class="meta"><em>2020</em>Жалпы білім беретін пәндер бойынша республикалық олимпиаданың аудандық кезеңі. Химия пәні, 10-сынып<b class="badge">ІІІ орын</b></span></button></li>
+      </ul>
+      <p class="hint-sm">Дипломды үлкейту үшін басыңыз</p>
+    </div>
+  </div>
+</section>
 
-<div class="ov" id="ov4">
-  <div class="head"><div class="k" data-t="aK"></div><h2 data-t="aH"></h2></div>
-  <div class="strip" id="strip"></div>
-</div>
+<!-- 5 · GROWTH TIMELINE -->
+<section class="scene" id="growth" data-h="520" aria-labelledby="h-growth">
+  <div class="stick">
+    <div class="panel wide" data-fade>
+      <p class="kicker">04 · Жарық сызығы</p>
+      <h2 id="h-growth">Кәсіби даму және тәжірибе алмасу</h2>
+      <div class="years" id="years" role="tablist" aria-label="Жылдар"></div>
+      <ol class="timeline" id="timeline"></ol>
+    </div>
+  </div>
+</section>
 
-<div class="ov" id="ov5"><div class="col">
-  <div class="k" data-t="stK"></div><h2 data-t="stH"></h2>
-  <div class="cards3" id="gS"></div>
-</div></div>
+<!-- 6 · FINAL -->
+<section class="scene" id="final" data-h="220" aria-labelledby="h-final">
+  <div class="stick">
+    <img class="hero-photo final-photo" src="assets/photos/teacher-testtube.jpg" alt="" width="960" height="1280">
+    <div class="panel" data-fade="final">
+      <p class="kicker">05 · Зертханаға оралу</p>
+      <h2 id="h-final" class="mega2">Білімнен — зерттеуге.<br><span>Зерттеуден — болашаққа.</span></h2>
+      <p class="text">Менің кәсіби мақсатым — оқушылардың химиялық сауаттылығын қалыптастыру, тәжірибелік және зерттеушілік қабілеттерін дамыту.</p>
+      <div class="actions">
+        <a class="btn" href="https://drive.google.com/drive/folders/1_XXh8dM-jRlkkJLPEb3qRIvdnLMwAaRZ" target="_blank" rel="noopener">Құжаттарды қарау <b aria-hidden="true">↗</b></a>
+        <a class="btn ghost" href="#home" data-go="0">Басына оралу <b aria-hidden="true">↑</b></a>
+      </div>
+    </div>
+    <footer class="sign">Меирбек Кожагулов · Талдысай орта мектебі</footer>
+  </div>
+</section>
+</main>
 
-<div class="ov" id="ov6"><div>
-  <div class="k" data-t="finK"></div>
-  <h2 class="big" style="margin:22px 0" data-t="thanks"></h2>
-  <p class="sub" data-t="foot"></p>
-</div></div>
+<dialog id="viewer" aria-labelledby="viewer-title">
+  <div class="v-head"><h3 id="viewer-title"></h3><button class="v-close" type="button" aria-label="Жабу">×</button></div>
+  <div class="v-body"><img id="viewer-img" alt=""></div>
+  <div class="v-foot"><p id="viewer-note"></p><div class="v-pages" id="viewer-pages"></div></div>
+</dialog>
 
-<div id="lb"><button class="x" aria-label="close">×</button><button class="ar pv">‹</button><button class="ar nx">›</button><img id="lbI" alt=""><p id="lbT"></p></div>
-<div id="pres"><div class="clock" id="clock">5:00</div><div class="step" id="pStep"></div>
-  <button id="pPrev" aria-label="prev">↑</button><button id="pNext" aria-label="next">↓</button><button id="pEnd" aria-label="stop">■</button></div>
-
-<script>
-const T={
-kz:{contest:"«Үздік химия пәні мұғалімі – 2026»",subj:"Химия пәні мұғалімі · Педагог-модератор · №81 жалпы білім беретін орта мектеп",scroll:"Айналдырыңыз",
-st0:"жыл өтіл",st1:"марапат",st2:"тәжірибе бөлісу",st3:"оқушы жүлдесі",
-credoK:"Педагогикалық ұстаным",motto:"«Әр оқушының бойындағы қабілетті ашу, <em>ғылымға қызығушылығын</em> ояту»",
-mis:"Алған білімін өмірде қолдана алатын тұлға қалыптастыру.",goal:"Химиялық сауаттылықты, тәжірибелік және зерттеушілік қабілетті дамыту.",
-critK:"Байқау критерийлері",critH:"Бес критерий — <em>бес дәлел</em>",shK:"Тәжірибе тарату",shH:"Ауыл мектебінен — <em>республикаға</em>",
-aK:"Кәсіби өсу",aH:"Марапаттар",stK:"Тәлімгерлік",stH:"Оқушыларымның <em>жеңістері</em>",finK:"Химия — өмірдің тілі",
-thanks:"Рахмет!",foot:"Кожагулов Меирбек Сансызбаевич · №81 ЖОББМ · 2026",cls:"сынып",
-L:{int:"Халықаралық",rep:"Республикалық",reg:"Облыстық",dis:"Аудандық"},
-nav:["Кіріспе","Ұстаным","Критерийлер","Тәжірибе","Марапаттар","Оқушылар","Соңы"]},
-ru:{contest:"«Лучший учитель химии – 2026»",subj:"Учитель химии · Педагог-модератор · КГУ «СОШ №81»",scroll:"Листайте",
-st0:"лет стажа",st1:"наград",st2:"выступлений с опытом",st3:"призовых места учеников",
-credoK:"Педагогическое кредо",motto:"«Раскрыть способности каждого ученика и пробудить <em>интерес к науке</em>»",
-mis:"Воспитать личность, которая применяет знания в жизни.",goal:"Развивать химическую грамотность, практические и исследовательские навыки.",
-critK:"Критерии конкурса",critH:"Пять критериев — <em>пять доказательств</em>",shK:"Распространение опыта",shH:"Из сельской школы — <em>на уровень республики</em>",
-aK:"Профессиональный рост",aH:"Награды",stK:"Наставничество",stH:"Победы моих <em>учеников</em>",finK:"Химия — язык жизни",
-thanks:"Спасибо!",foot:"Кожагулов Меирбек Сансызбаевич · СОШ №81 · 2026",cls:"класс",
-L:{int:"Международный",rep:"Республиканский",reg:"Областной",dis:"Районный"},
-nav:["Начало","Кредо","Критерии","Опыт","Награды","Ученики","Итог"]}
-};
-const CRIT=[[["Функционалдық сауаттылық","Функциональная грамотность"],["Химия — күнделікті өмірмен байланыста; PISA конференциясы, 2024","Химия в связи с жизнью; конференция по PISA, 2024"]],
-[["Саралап оқыту","Дифференциация"],["Біріктірілген сыныптарда әр оқушыға — өз деңгейі","В классах-комплектах каждому — свой уровень"]],
-[["Бағалау және кері байланыс","Оценивание и обратная связь"],["Оқушы тәжірибе жасап, қорытындысын дәлелдейді","Ученик ставит опыт и доказывает вывод"]],
-[["Цифр және ЖИ","Цифра и ИИ"],["Цифрлық ресурстар бойынша республикалық семинар спикері, 2025","Спикер республиканского семинара по цифровым ресурсам, 2025"]],
-[["Зерттеу және шығармашылық","Исследование и творчество"],["Ы. Алтынсарин академиясының STEM жұмыс тобы, 2026","Рабочая группа STEM Академии им. Ы. Алтынсарина, 2026"]]];
-const TL=[["2024",["Республикалық Тамыз саммиті, Астана — спикер","Республиканский Августовский саммит, Астана — спикер"]],
-["2025",["Халықаралық конференция, Астана–Павлодар","Международная конференция, Астана–Павлодар"]],
-["2025",["Республикалық семинар, Ақтөбе","Республиканский семинар, Актобе"]],
-["2026",["Облыстық семинарлар, Ақтөбе","Областные семинары, Актобе"]],
-["2026",["Ы. Алтынсарин академиясы — STEM жұмыс тобы","Академия им. Ы. Алтынсарина — рабочая группа STEM"]]];
-const EV=[["ev1",["Тамыз саммиті 2024","Августовский саммит 2024"]],["ev2",["Республикалық семинар 2025","Республиканский семинар 2025"]],["ev3",["Облыстық семинар 2026","Областной семинар 2026"]],["ev4",["Онлайн-семинар 23.01.2026","Онлайн-семинар 23.01.2026"]],["ev5",["STEM жұмыс тобы, бұйрық 2026","Рабочая группа STEM, приказ 2026"]]];
-const AW=[["reg","2021","Химия мұғалімдерінің облыстық олимпиадасы — III орын","Областная олимпиада учителей химии — III место"],
-["dis","2020","«Дарынды балаларға — талантты ұстаз» — II дәреже","«Одарённым детям — талантливый учитель» — II степень"],
-["dis","2021","Құрмет грамотасы, Қобда аудандық білім бөлімі","Почётная грамота, Кобдинский РОО"],
-["int","2023","57-ші Халықаралық Менделеев олимпиадасы: мұғалімдерге семинар","57-я Международная Менделеевская олимпиада: семинар для учителей"],
-["rep","2024","«Өрлеу»: PISA республикалық конференциясы","«Өрлеу»: республиканская конференция по PISA"],
-["rep","2024","Ы. Алтынсарин академиясы: Тамыз саммитінің спикері","Академия им. Ы. Алтынсарина: спикер Августовского саммита"],
-["dis","2024","Аудандық Тамыз саммиті","Районный Августовский саммит"],
-["reg","2024","Ақтөбе облыстық әдістемелік орталығы","Актюбинский областной методический центр"],
-["int","2025","Халықаралық конференция «Ауыл мектебінің қазіргі жағдайы»","Международная конференция «Современное состояние сельской школы»"],
-["rep","2025","ҚР Оқу-ағарту министрлігі, Орта білім беру комитеті","Министерство просвещения РК, Комитет среднего образования"],
-["rep","2025","«Өрлеу»: «SMART-оқыту» курсы, 80 сағат","«Өрлеу»: курс «SMART-обучение», 80 часов"]];
-const ST=[["Умиржанова Аружан","","reg",["I дәреже","I степень"],"2023",["«Аламан» облыстық олимпиадасы, химия","Областная олимпиада «Аламан», химия"]],
-["Умиржанова Аружан","9","dis",["III орын","III место"],"2024",["«Аламан», аудандық кезең","«Аламан», районный этап"]],
-["Елубаев Ұлан","10","dis",["III орын","III место"],"2020",["Республикалық олимпиада, химия, аудандық кезең","Республиканская олимпиада, химия, районный этап"]]];
-
-let lang="kz";try{const s=localStorage.getItem("lang");if(s==="ru"||s==="kz")lang=s}catch(e){}
-const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],pad=i=>String(i+1).padStart(2,"0"),q=s=>s.replace(/"/g,"&quot;");
-const chaps=$$(".chap"),ovs=$$(".ov");
-let presOn=false,cur=0,left=300,tick;
-function render(){
-  const t=T[lang],K=lang==="kz"?0:1;document.documentElement.lang=K?"ru":"kk";
-  $$("[data-t]").forEach(e=>{const x=t[e.dataset.t];if(typeof x==="string")e.innerHTML=x});
-  $$(".lang button").forEach(b=>b.classList.toggle("on",b.dataset.l===lang));
-  $("#links").innerHTML=t.nav.slice(1,6).map((n,i)=>`<button data-go="${i+1}">${n}</button>`).join("");
-  $("#dots").innerHTML=t.nav.map((n,i)=>`<button data-go="${i}" title="${n}" aria-label="${n}"></button>`).join("");
-  $("#critList").innerHTML=CRIT.map((c,i)=>`<div class="it"><b>0${i+1}</b><div><h3>${c[0][K]}</h3><p>${c[1][K]}</p></div></div>`).join("");
-  $("#tl").innerHTML=TL.map(x=>`<div class="it"><b style="font-size:24px">${x[0]}</b><div><h3 style="font-size:21px">${x[1][K]}</h3></div></div>`).join("");
-  $("#thumbs").innerHTML=EV.map(e=>`<img class="z" src="img/${e[0]}.jpg" data-title="${q(e[1][K])}" alt="${q(e[1][K])}">`).join("");
-  $("#strip").innerHTML=AW.map((a,i)=>`<div class="card"><div class="ph"><img class="z" src="img/a${pad(i)}.jpg" data-title="${a[1]} · ${q(a[2+K])}" alt=""></div><div class="cap"><b><span>${t.L[a[0]]}</span><span>${a[1]}</span></b>${a[2+K]}</div></div>`).join("");
-  $("#gS").innerHTML=ST.map((s,i)=>`<div class="card"><div class="ph"><img class="z" src="img/st${i+1}.jpg" data-title="${s[0]} — ${q(s[5][K])}" alt=""></div><div class="cap"><b><span>${s[3][K]} · ${t.L[s[2]]}</span><span>${s[4]}</span></b><strong>${s[0]}</strong>${s[1]?s[1]+" "+t.cls+" · ":""}${s[5][K]}</div></div>`).join("");
-  $$("[data-go]").forEach(b=>b.onclick=()=>go(+b.dataset.go));
-  if(presOn)pUpd();
-}
-$$(".lang button").forEach(b=>b.onclick=()=>{lang=b.dataset.l;try{localStorage.setItem("lang",lang)}catch(e){}render()});
-
-/* overlays follow the 3D progress (window.__G from scene3d.js; fallback = raw scroll) */
-const sm=(a,b,v)=>{const x=Math.min(1,Math.max(0,(v-a)/(b-a)));return x*x*(3-2*x)};
-function rawG(){const y=scrollY;for(let i=0;i<chaps.length;i++){const a=chaps[i].offsetTop,b=i<chaps.length-1?chaps[i+1].offsetTop:a+chaps[i].offsetHeight-innerHeight;if(y<b||i===chaps.length-1)return i+Math.min(1,Math.max(0,(y-a)/Math.max(1,b-a)))}return 0}
-let lastK=-1;
-(function loop(){
-  const G=window.__G!==undefined&&document.documentElement.classList.contains("gl-on")?window.__G:rawG();
-  const k=Math.min(ovs.length-1,Math.floor(G)),u=G-k;
-  ovs.forEach((o,i)=>{let op=0;if(i===k){const fin=i===0?1:sm(.12,.24,u),fout=i===ovs.length-1?1:1-sm(.72,.8,u);op=fin*fout}
-    o.style.opacity=op.toFixed(3);o.style.visibility=op>0.01?"visible":"hidden";o.classList.toggle("live",op>.5);
-    o.style.transform=`translateY(${((1-op)*(i===k&&u>.5?-30:30)).toFixed(1)}px)`});
-  const v=sm(.18,.62,u),its=ovs[k].querySelectorAll(".it");its.forEach((e,j)=>e.classList.toggle("on",v>=j/its.length-.001&&u>.14));
-  if(k===4){const s=$("#strip"),max=Math.max(0,s.scrollWidth-innerWidth+innerWidth*.12);s.style.transform=`translateX(${(-max*sm(.2,.72,u)).toFixed(1)}px)`}
-  if(k!==lastK){$$("#dots button").forEach((b,i)=>b.classList.toggle("on",i===k));$$("#links button").forEach(b=>b.classList.toggle("on",+b.dataset.go===k));lastK=k;if(presOn){cur=k;pUpd()}}
-  $("#bar").style.width=(scrollY/(document.documentElement.scrollHeight-innerHeight)*100)+"%";
-  requestAnimationFrame(loop)})();
-
-/* lightbox */
-let lbList=[],lbI=0;
-function lbShow(){const e=lbList[lbI];$("#lbI").src=e.src;$("#lbT").textContent=e.dataset.title||"";$("#lb").classList.add("on")}
-function lbClose(){$("#lb").classList.remove("on")}
-document.addEventListener("click",e=>{const c=e.target.closest(".card");const z=c?c.querySelector("img.z"):(e.target.matches("img.z")?e.target:null);if(!z)return;
-  const scope=z.closest("#strip,#gS,#thumbs");lbList=scope?[...scope.querySelectorAll("img.z")]:[z];lbI=lbList.indexOf(z);lbShow()});
-$("#lb .x").onclick=lbClose;$("#lb").onclick=e=>{if(e.target.id==="lb")lbClose()};
-$("#lb .pv").onclick=()=>{lbI=(lbI-1+lbList.length)%lbList.length;lbShow()};$("#lb .nx").onclick=()=>{lbI=(lbI+1)%lbList.length;lbShow()};
-
-/* navigation + 5-minute mode */
-function go(i){cur=Math.max(0,Math.min(chaps.length-1,i));const c=chaps[cur],nx=chaps[cur+1];const span=(nx?nx.offsetTop:c.offsetTop+c.offsetHeight-innerHeight)-c.offsetTop;
-  scrollTo({top:c.offsetTop+(cur===0?0:span*.48),behavior:"smooth"});if(presOn)pUpd()}
-function pUpd(){$("#pStep").innerHTML=`${cur+1}/${chaps.length} · ${T[lang].nav[cur]}<small>≈ ${chaps[cur].dataset.sec} сек</small>`}
-const fmt=s=>Math.floor(s/60)+":"+String(s%60).padStart(2,"0");
-function presStart(){presOn=true;left=300;$("#pres").classList.add("on");$("#clock").textContent=fmt(left);$("#clock").classList.remove("warn");go(0);
-  clearInterval(tick);tick=setInterval(()=>{left--;$("#clock").textContent=left>=0?fmt(left):"−"+fmt(-left);$("#clock").classList.toggle("warn",left<=30)},1000)}
-function presEnd(){presOn=false;clearInterval(tick);$("#pres").classList.remove("on")}
-$("#presBtn").onclick=()=>presOn?presEnd():presStart();
-$("#pNext").onclick=()=>go(cur+1);$("#pPrev").onclick=()=>go(cur-1);$("#pEnd").onclick=presEnd;
-addEventListener("keydown",e=>{if($("#lb").classList.contains("on")){if(e.key==="Escape")lbClose();if(e.key==="ArrowRight")$("#lb .nx").click();if(e.key==="ArrowLeft")$("#lb .pv").click();return}
-  if(!presOn)return;if(["ArrowDown","PageDown"," ","ArrowRight"].includes(e.key)){e.preventDefault();go(cur+1)}if(["ArrowUp","PageUp","ArrowLeft"].includes(e.key)){e.preventDefault();go(cur-1)}if(e.key==="Escape")presEnd()});
-render();
-</script>
+<script src="main.js"></script>
 <script type="module" src="scene3d.js"></script>
 </body>
 </html>
