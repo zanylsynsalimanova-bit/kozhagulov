@@ -84,6 +84,30 @@
   $("#timeline").addEventListener("focusin", e => { const li = e.target.closest("li"); if (!li || isStatic()) return; const i = +li.id.split("-")[1];
     scrollTo({ top: tops[4] + spans[4] * (.1 + .8 * (i + .5) / TL.length) }); });
 
+  /* ---------- hero lab layer: zoom into the painted flask, teacher slides aside in depth ---------- */
+  const lab = $("#lab"), bg = $("#lab .lab-bg"), teacher = $("#lab .lab-teacher"), glowL = $("#lab .lab-glow");
+  const FLASK = [.543, .79];          // neck of the flask in the background image (normalised)
+  let flaskPx = [0, 0];
+  function layoutLab() {
+    const W = innerWidth, H = innerHeight, iw = 1672, ih = 941, fx = W < 820 ? .6 : .5;
+    const s = Math.max(W / iw, H / ih), w = iw * s, h = ih * s, left = Math.min(0, Math.max(W - w, W / 2 - fx * w)), top = (H - h) / 2;
+    Object.assign(bg.style, { width: w + "px", height: h + "px", left: left + "px", top: top + "px", objectFit: "fill" });
+    bg.style.transformOrigin = `${FLASK[0] * w}px ${FLASK[1] * h}px`;
+  }
+  addEventListener("resize", layoutLab); layoutLab();
+  function labFrame(G) {
+    const show = G < .93 || G > 5.0; lab.style.visibility = show ? "visible" : "hidden"; if (!show) return;
+    const W = innerWidth, H = innerHeight;
+    let z, tx, tp, to;                                   // zoom, pull-to-centre, teacher progress, teacher opacity
+    if (G < 1) { z = sm(.04, .9, G); tp = sm(0, .62, G); to = 1 - sm(.3, .62, G); }
+    else { const f = sm(5.02, 5.55, G); z = (1 - f) * .45; tp = (1 - f) * .6; to = f; }
+    const s = 1 + Math.pow(z, 1.6) * 7, k = Math.min(1, z * 1.15);
+    tx = (W / 2 - flaskPx[0]) * k; const ty = (H * .5 - flaskPx[1]) * k;
+    bg.style.transform = `translate3d(${tx.toFixed(1)}px,${ty.toFixed(1)}px,0) scale(${s.toFixed(4)})`;
+    teacher.style.transform = `translate3d(${(tp * W * .38).toFixed(1)}px,${(tp * H * .06).toFixed(1)}px,0) scale(${(1 + tp * .35).toFixed(3)})`;
+    teacher.style.opacity = to.toFixed(3); glowL.style.opacity = (1 - z).toFixed(3);
+  }
+
   const sm = (a, b, v) => { const x = Math.min(1, Math.max(0, (v - a) / (b - a))); return x * x * (3 - 2 * x); };
   const panels = scenes.map(s => s.querySelector(".panel"));
   const links = $$(".nav ul a"), steps = $$("[data-steps] li"), late = $("[data-late]"), cards = $$("#gallery .doc"), tls = $$("#timeline li"), yrs = $$("#years button");
@@ -101,6 +125,7 @@
         p.style.opacity = op.toFixed(3); p.style.transform = `translate3d(0,${y.toFixed(1)}px,0)`;
         p.style.visibility = op < .01 ? "hidden" : "visible";
       });
+      labFrame(G);
       const hint = $(".scroll-hint"); if (hint) hint.style.opacity = k === 0 ? (1 - sm(.0, .08, u)).toFixed(2) : 0;
       if (k === 2) { steps.forEach((s, j) => s.classList.toggle("on", u > .2 + j * .12)); late.style.opacity = sm(.62, .72, u); }
       if (k === 3 && innerWidth > 820) cards.forEach((c, j) => {

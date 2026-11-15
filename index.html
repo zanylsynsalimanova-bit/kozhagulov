@@ -8,7 +8,8 @@
 <meta name="theme-color" content="#031615">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800;900&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="assets/photos/teacher-testtube.jpg">
+<link rel="preload" as="image" href="assets/photos/lab-hero-bg.webp" type="image/webp">
+<link rel="preload" as="image" href="assets/photos/teacher-cutout.webp" type="image/webp">
 <script>
 /* decide mode before first paint: static = reduced motion (WebGL check happens in scene3d.js) */
 (function(){var d=document.documentElement;d.classList.add('js');
@@ -19,6 +20,12 @@
 </head>
 <body>
 <a class="skip" href="#about">Мазмұнға өту</a>
+<div id="lab">
+  <img class="lab-bg" src="assets/photos/lab-hero-bg.webp" alt="" width="1672" height="941" fetchpriority="high">
+  <div class="lab-glow" aria-hidden="true"></div>
+  <img class="lab-teacher" src="assets/photos/teacher-cutout.webp" alt="Химия мұғалімі Меирбек Кожагулов қорғаныш көзілдірігімен жасыл ерітіндісі бар сынауықты қарап тұр" width="1086" height="1448" fetchpriority="high">
+  <div class="lab-shade" aria-hidden="true"></div>
+</div>
 <canvas id="gl" aria-hidden="true"></canvas>
 <div id="veil" aria-hidden="true"></div>
 
@@ -40,7 +47,6 @@
 <!-- 1 · HERO -->
 <section class="scene" id="home" data-h="300" aria-labelledby="h-home">
   <div class="stick">
-    <img class="hero-photo" src="assets/photos/teacher-testtube.jpg" alt="Химия мұғалімі Меирбек Кожагулов зертханада қолында сынауығы бар" width="960" height="1280">
     <div class="panel hero-text" data-fade="hero">
       <p class="kicker">МЕИРБЕК <span class="el" title="Калий, 19"><i>19</i>К</span>ОЖАГУЛОВ</p>
       <h1 id="h-home" class="mega"><span>БОЛАШАҚ</span><span>ХИМИЯДАН</span><span>БАС<span class="el" title="Тантал, 73"><i>73</i>Та</span>ЛАДЫ</span></h1>
@@ -123,7 +129,6 @@
 <!-- 6 · FINAL -->
 <section class="scene" id="final" data-h="220" aria-labelledby="h-final">
   <div class="stick">
-    <img class="hero-photo final-photo" src="assets/photos/teacher-testtube.jpg" alt="" width="960" height="1280">
     <div class="panel" data-fade="final">
       <p class="kicker">05 · Зертханаға оралу</p>
       <h2 id="h-final" class="mega2">Білімнен — зерттеуге.<br><span>Зерттеуден — болашаққа.</span></h2>

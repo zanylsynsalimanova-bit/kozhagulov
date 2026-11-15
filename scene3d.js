@@ -12,13 +12,14 @@ if (!root.classList.contains("static")) {
 function init() {
   const canvas = document.getElementById("gl"), veil = document.getElementById("veil");
   const mob = innerWidth < 820 || matchMedia("(pointer: coarse)").matches;
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: !mob, powerPreference: "high-performance" });
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: !mob, alpha: true, powerPreference: "high-performance" });
   if (!renderer.getContext()) throw new Error("no gl");
   renderer.setPixelRatio(Math.min(devicePixelRatio, mob ? 1.25 : 1.6));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.05;
 
   const BG = new THREE.Color(0x031615), BG2 = new THREE.Color(0x032321);
+  renderer.setClearColor(0x000000, 0);
   const scene = new THREE.Scene(); scene.background = BG.clone();
   scene.fog = new THREE.FogExp2(0x031615, mob ? .03 : .028);
   const pm = new THREE.PMREMGenerator(renderer);
@@ -58,45 +59,14 @@ function init() {
 
   /* ================= LAB ================= */
   const lab = new THREE.Group(); scene.add(lab);
-  const L = mob ? { ph: V(.3, 1.75, -2.8), phH: 5.2, ring: V(.4, 2.0, -3.9), ringR: 2.75, tableY: -1.1, fl: V(1.5, 0, 2.2), fs: .24, cam: V(0, .7, 10.5), look: V(.2, .9, 0) }
-                : { ph: V(2.75, .45, -2.4), phH: 6.6, ring: V(2.95, .9, -3.7), ringR: 3.35, tableY: -2.2, fl: V(1.55, 0, 1.4), fs: .3, cam: V(0, .25, 9.2), look: V(.95, .1, 0) };
-  // table
-  const table = new THREE.Mesh(new THREE.PlaneGeometry(70, 40), new THREE.MeshStandardMaterial({ color: 0x021213, metalness: .75, roughness: .3, envMapIntensity: .6 }));
-  table.rotation.x = -Math.PI / 2; table.position.y = L.tableY; lab.add(table);
-  // teacher photo, graded + feathered on a canvas, as a plane in depth
-  const photo = new THREE.Mesh(new THREE.PlaneGeometry(L.phH * .75, L.phH), new THREE.MeshBasicMaterial({ transparent: true, depthWrite: false, toneMapped: false, fog: false, color: 0xeefcf9, opacity: 0 }));
-  photo.position.copy(L.ph); lab.add(photo);
-  const im = new Image(); im.src = "assets/photos/teacher-testtube.jpg";
-  im.onload = () => { const w = im.naturalWidth, h = im.naturalHeight, c = document.createElement("canvas"); c.width = w; c.height = h; const x = c.getContext("2d");
-    x.drawImage(im, 0, 0, w, h);
-    x.globalCompositeOperation = "soft-light"; x.fillStyle = "rgba(10,90,92,.55)"; x.fillRect(0, 0, w, h);
-    x.globalCompositeOperation = "multiply"; const v = x.createRadialGradient(w * .5, h * .4, h * .2, w * .5, h * .45, h * .75); v.addColorStop(0, "#fff"); v.addColorStop(1, "#244"); x.fillStyle = v; x.fillRect(0, 0, w, h);
-    x.globalCompositeOperation = "destination-in"; x.save(); x.translate(w * .53, h * .43); x.scale(1, 1.38);
-    const m = x.createRadialGradient(0, 0, 0, 0, 0, w * .56); m.addColorStop(0, "#000"); m.addColorStop(.6, "#000"); m.addColorStop(1, "rgba(0,0,0,0)"); x.fillStyle = m; x.fillRect(-w, -h, w * 2, h * 2); x.restore();
-    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 4; photo.material.map = t; photo.material.needsUpdate = true; photoReady = true; };
-  let photoReady = false;
-  glow(lab, 0x47d8de, L.phH * 1.5, L.ph.clone().add(V(0, .2, -.4)), .22);
-  // big glass ring behind the teacher
-  const ring = new THREE.Group(); ring.position.copy(L.ring); lab.add(ring);
-  ring.add(new THREE.Mesh(new THREE.TorusGeometry(L.ringR, .14, mob ? 16 : 32, mob ? 90 : 180), glass));
-  const rimLine = new THREE.Mesh(new THREE.TorusGeometry(L.ringR - .2, .012, 6, 160), new THREE.MeshBasicMaterial({ color: 0x47d8de, transparent: true, opacity: .7, fog: false })); ring.add(rimLine);
-  ring.rotation.y = -.25;
-  // foreground Erlenmeyer flask with lime solution
-  const flask = new THREE.Group(); const fs = L.fs; flask.scale.setScalar(fs);
-  flask.position.set(L.fl.x, L.tableY + 3.2 * fs, L.fl.z); lab.add(flask);
-  const prof = [[0,-3.2],[3.1,-3.2],[3.3,-3],[1,1.6],[.85,2],[.85,4.2],[1.05,4.35],[1.05,4.6],[.8,4.6]].map(([a, b]) => new THREE.Vector2(a, b));
-  flask.add(new THREE.Mesh(new THREE.LatheGeometry(prof, mob ? 48 : 96), glass));
-  const liqP = [[0,-3.05],[3.0,-3.05],[3.15,-2.9],[2.3,-.6],[0,-.6]].map(([a, b]) => new THREE.Vector2(a, b));
-  flask.add(new THREE.Mesh(new THREE.LatheGeometry(liqP, mob ? 48 : 96), new THREE.MeshStandardMaterial({ color: 0xa6e01c, emissive: 0x8fd400, emissiveIntensity: 1.05, transparent: true, opacity: .88, roughness: .12 })));
-  glow(flask, 0xd2ff24, 9, V(0, -2.4, 0), .55); glow(lab, 0xd2ff24, 3.2, V(L.fl.x, L.tableY + .02, L.fl.z), .5);
-  const fLight = new THREE.PointLight(0xc6ff2a, mob ? 8 : 14, 9, 2); fLight.position.set(L.fl.x, L.tableY + .8, L.fl.z); lab.add(fLight);
-  const bubbles = []; for (let i = 0; i < (mob ? 10 : 22); i++) { const b = new THREE.Mesh(sph, core(0xeaffb0)); b.scale.setScalar(.07 + Math.random() * .1); b.userData = { a: Math.random() * 6, r: Math.random() * 2.2, s: .3 + Math.random() * .7, o: Math.random() * 3 }; flask.add(b); bubbles.push(b); }
-  // test tubes + beaker next to the flask (depth)
-  if (!mob) for (let i = 0; i < 3; i++) { const t = new THREE.Mesh(new THREE.CylinderGeometry(.13, .13, 2.2, 24, 1, true), glassLite); t.position.set(L.fl.x - 1.7 + i * .32, L.tableY + 1.1, L.fl.z - 1.4); lab.add(t); }
-  const beaker = new THREE.Mesh(new THREE.CylinderGeometry(.55, .55, 1.1, 32, 1, true), glassLite); beaker.position.set(L.fl.x - 1.1, L.tableY + .55, L.fl.z - .7); lab.add(beaker);
+  // The lab itself (background photo + teacher cut-out) is an HTML layer under this transparent canvas;
+  // here we only add glass molecules floating in front of it for depth.
+  const L = mob ? { cam: V(0, .7, 10.5), look: V(0, .7, 0) } : { cam: V(0, .2, 9.2), look: V(0, .2, 0) };
+  const fore = mob ? [[-2.4, 4.6, 1, .5], [2.3, -1.2, 2.5, .45]] : [[-6.6, -3.2, 1.5, .8], [-1.2, 3.9, -1, .55], [6.8, 3.6, 0, .6], [3.8, -3.8, 3, .45]];
+  fore.forEach(([x, y, z, s], i) => { const m = molecule(["h2o", "ch4", "co2", "h2o"][i], s, i % 2 ? 0xd2ff24 : 0x47d8de, glass); m.position.set(x, y, z); lab.add(m); spinners.push(m); });
   // distant soft-lit molecules + final-gather molecules
   const labMols = [];
-  const far = mob ? [[-2.2, 4.2, -9], [2.8, 4.8, -12], [-1, -0.2, -14]] : [[-5.2, 3.3, -8], [-1.5, 4.2, -12], [7.5, 3.2, -10], [-6.8, -1.2, -11], [6.2, -1.6, -13]];
+  const far = [];
   far.forEach((p, i) => { const m = molecule(["h2o", "ch4", "co2"][i % 3], mob ? .7 : .85); m.position.set(...p); lab.add(m); labMols.push(m); spinners.push(m); glow(lab, 0x47d8de, 2.4, V(...p), .18); });
   const gather = []; const GN = mob ? 5 : 8, gc = mob ? V(0, 1.2, -1.5) : V(-3.1, .3, -2.2);
   for (let i = 0; i < GN; i++) { const m = molecule(["h2o", "ch4", "co2"][i % 3], mob ? .45 : .6, i % 2 ? 0xd2ff24 : 0x47d8de);
@@ -156,13 +126,11 @@ function init() {
     nodes.push([n, glow(tlGroup, 0xd2ff24, 1.6, p, .5), label(tlGroup, y, p.clone().add(V(0, .75, 0)), .5, "#AFC4C1")]); });
 
   /* ================= camera path ================= */
-  const fx = L.fl.x, fz = L.fl.z, neck = L.tableY + 7.8 * fs, surf = L.tableY + 2.6 * fs;
+  // lab phase: the camera drifts forward through the foreground molecules toward the painted flask (HTML layer zooms the photo)
   const K = [
     { g: 0, p: L.cam, l: L.look },
-    { g: .3, p: V(fx - .25, neck + 1.5, fz + 3.6), l: V(fx, neck - .5, fz) },
-    { g: .55, p: V(fx, neck + 1.2, fz + .7), l: V(fx, surf, fz - .15) },
-    { g: .72, p: V(fx, neck - .25, fz + .04), l: V(fx, surf - 1, fz - .08) },
-    { g: .8, p: V(fx, surf + .03, fz), l: V(fx, surf - 2, fz - .1) },
+    { g: .4, p: mob ? V(.3, .4, 6) : V(.4, -.3, 5.4), l: mob ? V(.4, 0, -4) : V(.8, -1, -4) },
+    { g: .8, p: mob ? V(.5, -.2, 2) : V(.7, -.8, 1.6), l: mob ? V(.6, -.6, -6) : V(.9, -1.5, -6) },
     { g: .92, p: V(0, mob ? 1.2 : 0, -189), l: V(mob ? 0 : .6, mob ? 1.4 : 0, -200), cut: true },
     { g: 1.5, p: V(0, mob ? 1.4 : 0, -195), l: V(mob ? .2 : 1, mob ? 1.6 : 0, -206) },
     { g: 2.0, p: V(mob ? 0 : .2, mob ? 1.6 : .1, -207), l: V(mob ? 0 : 2.2, mob ? 1.9 : 0, -219) },
@@ -182,7 +150,7 @@ function init() {
     const a = K[i], b = K[i + 1], t = Math.min(1, Math.max(0, (G - a.g) / (b.g - a.g)));
     let v = 0;
     if (b.cut) { const s = t < .5 ? a : b; tmpP.copy(s.p); tmpL.copy(s.l); v = Math.pow(1 - Math.abs(t - .5) * 2, .7); if (t < .5) tmpP.lerp(tmpL, t * .5); }
-    else if (i === 12) { const q = sm(.08, .92, G - 4); tmpP.set(-7 + 32 * q, LY + 2.4, -265); tmpL.set(-1 + 32 * q, LY + 1.5, -276); }
+    else if (a.g === 4) { const q = sm(.08, .92, G - 4); tmpP.set(-7 + 32 * q, LY + 2.4, -265); tmpL.set(-1 + 32 * q, LY + 1.5, -276); }
     else { const e = t * t * (3 - 2 * t); tmpP.lerpVectors(a.p, b.p, e); tmpL.lerpVectors(a.l, b.l, e); }
     return v;
   }
@@ -198,19 +166,11 @@ function init() {
     const v = cam(G); camera.position.copy(tmpP); camera.lookAt(tmpL);
     veil.style.opacity = v.toFixed(3);
     const inLab = G < .86 || G > 5.06; lab.visible = inLab; micro.visible = !inLab || (G > .7 && G < .95) || (G > 4.9 && G < 5.1);
-    scene.background.copy(inLab ? BG : BG2); scene.fog.color.copy(scene.background);
-    // hero: photo slides sideways in depth while the camera approaches the flask
-    const hs = sm(0, .6, G < 1 ? G : 0), fin = G > 5 ? sm(5.1, 5.7, G) : 0;
-    photo.position.set(L.ph.x + (mob ? 0 : hs * 2.6), L.ph.y + (mob ? hs * 1.2 : 0), L.ph.z - hs * 3.2);
-    ring.position.set(L.ring.x + (mob ? 0 : hs * 2.2), L.ring.y, L.ring.z - hs * 2.6);
-    if (G > 5) { photo.position.x = L.ph.x + (mob ? 0 : .5 * (1 - fin)); }
-    photo.material.opacity = photoReady ? (G < 1 ? 1 - sm(.5, .78, G) : fin) : 0;
-    ring.rotation.z = t * .02; rimLine.material.opacity = .45 + Math.sin(t * .8) * .15;
+    scene.background = inLab ? null : BG2; scene.fog.color.copy(inLab ? BG : BG2); scene.fog.density = inLab ? .012 : (mob ? .03 : .028);
     // final: molecules gather into a calm composition around the closing text
     gather.forEach((m, i) => { m.visible = G > 5.02; if (m.visible) { const k = sm(.12 + i * .03, .6 + i * .03, G - 5); m.position.lerpVectors(m.userData.from, m.userData.to, k); m.position.y += Math.sin(t * .6 + i) * .06 * k; } });
     // decorative calm motion
     spinners.forEach(m => { if (m.parent.visible) { m.rotation.x += m.userData.spin.x * dt * .4; m.rotation.y += m.userData.spin.y * dt * .4; } });
-    if (lab.visible) bubbles.forEach(b => { const d = b.userData, y = -3 + ((t * d.s + d.o) % 2.3); const R = Math.max(.1, d.r * (1 - (y + 3) / 3.2)); b.position.set(Math.cos(d.a) * R, y, Math.sin(d.a) * R); });
     if (micro.visible) {
       const u2 = Math.min(1, Math.max(0, G - 2)); h2o.rotation.set(Math.sin(u2 * Math.PI) * .35, -.7 + u2 * 1.7, Math.sin(t * .4) * .03);
       gate.rotation.z = G * .35; caus.offset.y = t * .015;

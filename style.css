@@ -171,3 +171,21 @@ dialog::backdrop{background:rgba(2,10,11,.85);backdrop-filter:blur(6px)}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}html{scroll-behavior:auto}}
 @media (max-width:820px){.hero-text{max-width:none}.mega{font-size:clamp(38px,12.4vw,84px)}}
 @media (max-width:820px){.scroll-hint{display:none}}
+
+/* ===== hero lab layer: real background + real teacher cut-out (no circle mask) ===== */
+#lab{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;background:var(--bg)}
+#lab .lab-bg{position:absolute;left:0;top:0;width:100%;height:100%;max-width:none;object-fit:cover;object-position:50% 50%;will-change:transform}
+#lab .lab-teacher{position:absolute;right:max(0px,calc(50vw - 860px));bottom:0;height:min(96vh,1100px);width:auto;max-width:none;will-change:transform,opacity;
+  filter:brightness(.9) contrast(1.06) saturate(.92) drop-shadow(-14px -6px 40px rgba(71,216,222,.28)) drop-shadow(0 30px 40px rgba(2,10,11,.6));
+  -webkit-mask-image:linear-gradient(#000 82%,transparent 100%);mask-image:linear-gradient(#000 82%,transparent 100%)}
+#lab .lab-glow{position:absolute;inset:0;background:radial-gradient(38% 50% at 76% 42%,rgba(71,216,222,.22),transparent 70%),radial-gradient(14% 12% at 54% 88%,rgba(210,255,36,.22),transparent 70%);mix-blend-mode:screen}
+#lab .lab-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(2,10,11,.82) 0%,rgba(2,10,11,.45) 34%,rgba(2,10,11,0) 58%),linear-gradient(rgba(2,10,11,.55),rgba(2,10,11,0) 18%,rgba(2,10,11,0) 78%,rgba(2,10,11,.7))}
+#gl{z-index:1}#veil{z-index:2}main{z-index:3}
+#home .panel::before,#final .panel::before{display:none}
+@media (max-width:820px){
+  #lab .lab-bg{object-position:60% 50%}
+  #lab .lab-teacher{right:-4vw;top:58px;bottom:auto;height:min(60vh,560px)}
+  #lab .lab-shade{background:linear-gradient(rgba(2,10,11,.5),rgba(2,10,11,0) 14%,rgba(2,10,11,0) 40%,rgba(2,10,11,.88) 62%,rgba(2,10,11,.95))}
+  #lab .lab-glow{background:radial-gradient(60% 40% at 62% 30%,rgba(71,216,222,.25),transparent 70%)}
+}
+.static #lab{position:absolute;height:100vh;height:100svh}
