@@ -7,94 +7,80 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#eef3f1;--paper:#f8fbfa;--ink:#10232a;--mute:#5d7178;--deep:#0b1c22;--acc:#1fb59a;--acc2:#7ee8d2;--amber:#f0a83c;--line:#d6e2df;
+:root{--deep:#071519;--ink:#e6f2ef;--mute:#93aaa6;--acc:#1fb59a;--acc2:#7ee8d2;--amber:#f0a83c;
 --serif:"Cormorant Garamond",Georgia,serif;--sans:Inter,system-ui,"Segoe UI",sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--ink);font:16px/1.6 var(--sans);overflow-x:hidden}
+body{background:var(--deep);color:var(--ink);font:16px/1.6 var(--sans);overflow-x:hidden}
 img{display:block;max-width:100%}
-em{font-style:italic;color:var(--acc)}
-.dark em{color:var(--acc2)}
+em{font-style:italic;color:var(--acc2)}
 button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
-.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
-.k{font:600 12px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--acc)}
-h1,h2{font-family:var(--serif);font-weight:500;line-height:1.05}
-h2{font-size:clamp(34px,5vw,58px);margin:14px 0 26px}
-section{padding:110px 0;position:relative}
-.dark{background:var(--deep);color:#e3efec}.dark .mute{color:#93aaa6}
-.mute{color:var(--mute)}
-.num{font:500 13px var(--sans);color:var(--acc);letter-spacing:.1em}
-
-#nav{position:fixed;inset:0 0 auto;z-index:50;display:flex;align-items:center;gap:20px;padding:14px 24px;transition:.3s}
-#nav.solid{background:rgba(11,28,34,.9);backdrop-filter:blur(10px)}
-#nav .nm{font:600 20px var(--serif);color:#eaf6f3;margin-right:auto;white-space:nowrap}
-#nav .links{display:flex;gap:18px}
-#nav .links a{color:#d4e6e2;text-decoration:none;font-size:13px;opacity:.8}
-#nav .links a:hover{opacity:1;color:var(--acc2)}
-.lang{display:flex;border:1px solid rgba(126,232,210,.45);border-radius:99px;overflow:hidden}
-.lang button{padding:5px 11px;font-size:12px;color:#d4e6e2}
-.lang button.on{background:var(--acc);color:#fff}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:99px;background:var(--acc);color:#fff;font-weight:600;font-size:14px;text-decoration:none;transition:.2s}
-.btn:hover{background:#17977f}
-#nav .btn{padding:8px 16px;font-size:13px}
-@media(max-width:900px){#nav .links{display:none}}
-
-#hero{min-height:100vh;padding:0;display:flex;align-items:center;color:#fff;overflow:hidden;background:radial-gradient(1200px 700px at 75% 40%,#14414a 0%,#0b1c22 60%)}
-#mol{position:absolute;inset:0;width:100%;height:100%}
-#hero .wrap{position:relative;z-index:2;width:100%;display:grid;grid-template-columns:1.25fr .75fr;gap:50px;align-items:center}
-#hero .in{padding:110px 0 60px}
-#hero h1{font-size:clamp(44px,6.2vw,84px);margin:18px 0 14px}
-#hero h1 span{display:block;font-size:.5em;color:var(--acc2);font-style:italic}
-#hero .sub{color:#cfe3df;font-size:17px}
-.motto{font:italic 500 24px/1.35 var(--serif);color:#e6f4f1;margin:28px 0 34px;padding-left:18px;border-left:2px solid var(--acc)}
-.photo{aspect-ratio:3/4;border-radius:220px 220px 24px 24px;overflow:hidden;border:1px solid rgba(126,232,210,.35);box-shadow:0 40px 80px -30px rgba(0,0,0,.6)}
-.photo img{width:100%;height:100%;object-fit:cover;object-position:60% 40%}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(126,232,210,.2);margin-top:50px;border-radius:14px;overflow:hidden}
-.stats div{background:rgba(11,28,34,.65);padding:16px 14px}
-.stats b{display:block;font:500 36px/1 var(--serif);color:var(--acc2)}
-.stats span{font-size:12px;color:#b9d0cb;line-height:1.3;display:block;margin-top:6px}
-@media(max-width:800px){#hero .wrap{grid-template-columns:1fr}.photo{max-width:280px;margin-bottom:60px}.stats{grid-template-columns:repeat(2,1fr)}}
-
-.credo{display:grid;grid-template-columns:1fr 1fr;gap:28px}
-.credo article{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:36px}
-.credo p{font:500 25px/1.4 var(--serif);margin-top:14px}
-.credo .pic{grid-row:span 2;border-radius:20px;overflow:hidden;cursor:zoom-in}
-.credo .pic img{width:100%;height:100%;object-fit:cover}
-.credo{grid-template-columns:.8fr 1fr}
-@media(max-width:800px){.credo{grid-template-columns:1fr}.credo .pic{grid-row:auto;aspect-ratio:4/3}}
-
-.crit{display:grid;gap:18px}
-.cr{display:grid;grid-template-columns:90px 1fr 220px;gap:30px;align-items:center;padding:26px 28px;border-radius:22px;background:rgba(255,255,255,.04);border:1px solid rgba(126,232,210,.16);transition:.3s}
-.cr:hover{border-color:rgba(126,232,210,.5)}
-.cr .n{font:500 60px/1 var(--serif);color:var(--acc2)}
-.cr h3{font:500 30px/1.15 var(--serif);color:#fff}
-.cr p{color:#d6e8e4;font:italic 500 21px/1.35 var(--serif);margin-top:8px}
-.cr img{border-radius:12px;aspect-ratio:4/3;object-fit:cover;width:100%;cursor:zoom-in;background:#fff}
-@media(max-width:860px){.cr{grid-template-columns:1fr;gap:12px}.cr .n{font-size:44px}}
-
-.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
-.card{background:var(--paper);border:1px solid var(--line);border-radius:16px;overflow:hidden;text-align:left;cursor:zoom-in;transition:.25s}
-.card:hover{transform:translateY(-4px);box-shadow:0 18px 36px -18px rgba(0,0,0,.35)}
-.dark .card{background:#12292f;border-color:#1f3c43;color:#e3efec}
-.card .ph{aspect-ratio:4/3;overflow:hidden;background:#fff}
+#gl{position:fixed;inset:0;width:100%;height:100%;z-index:0;display:block}
+#flash{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:0}
+.chap{position:relative;z-index:0}
+.k{font:600 12px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--acc2)}
+.ov{position:fixed;inset:0;z-index:2;display:flex;align-items:center;padding:90px 6vw 60px;opacity:0;visibility:hidden;pointer-events:none}
+.ov.live{pointer-events:auto}
+.col{max-width:520px}
+.ov.right{justify-content:flex-end}
+.ov h2{font:500 clamp(40px,5.6vw,78px)/1 var(--serif);margin:16px 0 22px}
+.big{font:500 clamp(54px,9vw,140px)/.92 var(--serif);letter-spacing:-.01em}
+.big span{display:block;font-style:italic;color:var(--acc2);font-size:.42em;margin-top:14px;letter-spacing:0}
+.sub{color:#cfe3df;font-size:16px;margin-top:22px}
+.stats{display:flex;gap:30px;margin-top:34px;flex-wrap:wrap}
+.stats b{display:block;font:500 46px/1 var(--serif);color:var(--acc2)}
+.stats span{font-size:12px;color:var(--mute)}
+.hint{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);text-align:center}
+.hint i{display:block;width:1px;height:38px;margin:10px auto 0;background:linear-gradient(var(--acc2),transparent);animation:dr 1.8s infinite}
+@keyframes dr{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+.quote{font:italic 500 clamp(26px,3vw,40px)/1.25 var(--serif)}
+.lines{margin-top:26px;display:grid;gap:12px}
+.lines p{padding-left:16px;border-left:2px solid var(--acc);color:#d6e8e4}
+.av{width:110px;height:110px;border-radius:50%;object-fit:cover;object-position:60% 30%;border:2px solid var(--acc2);margin-bottom:22px}
+.it{display:grid;grid-template-columns:52px 1fr;gap:14px;padding:14px 0;border-top:1px solid rgba(126,232,210,.18);opacity:0;transform:translateY(18px);transition:.6s cubic-bezier(.2,.8,.2,1)}
+.it.on{opacity:1;transform:none}
+.it b{font:500 34px/1 var(--serif);color:var(--acc2)}
+.it h3{font:500 25px/1.15 var(--serif)}
+.it p{font-size:14px;color:var(--mute);margin-top:4px}
+.it small{font-size:13px;color:var(--mute)}
+.thumbs{display:flex;gap:10px;margin-top:18px}
+.thumbs img{width:74px;height:96px;object-fit:cover;object-position:top;border-radius:8px;background:#fff;cursor:zoom-in;opacity:.9}
+.thumbs img:hover{opacity:1;transform:translateY(-3px)}
+#ov4{flex-direction:column;justify-content:space-between;align-items:stretch;padding-bottom:7vh}
+#ov4 .head{text-align:center}
+.strip{display:flex;gap:18px;will-change:transform}
+.card{flex:0 0 250px;background:rgba(10,32,38,.72);border:1px solid rgba(126,232,210,.2);border-radius:16px;overflow:hidden;backdrop-filter:blur(12px);cursor:zoom-in;text-align:left}
+.card .ph{aspect-ratio:4/3;background:#fff;overflow:hidden}
 .card .ph img{width:100%;height:100%;object-fit:cover;object-position:top}
-.card .cap{padding:12px 14px;font-size:13.5px;line-height:1.4}
-.card .cap b{display:flex;justify-content:space-between;font:600 10.5px var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--acc);margin-bottom:5px}
+.card .cap{padding:12px 14px;font-size:13px;line-height:1.4}
+.card .cap b{display:flex;justify-content:space-between;font:600 10px var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--acc2);margin-bottom:5px}
 .card .cap strong{font:600 18px var(--serif);display:block}
-.filt{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
-.filt button{padding:8px 16px;border-radius:99px;border:1px solid var(--line);font-size:13px;background:var(--paper)}
-.filt button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
-.hide{display:none}
+.cards3{display:grid;gap:12px;margin-top:10px}
+.cards3 .card{display:grid;grid-template-columns:110px 1fr;flex:none}
+.cards3 .card .ph{aspect-ratio:auto;height:100%}
+#ov6{justify-content:flex-start}
 
-.tl{display:grid;gap:0;border-left:2px solid rgba(126,232,210,.3);margin:0 0 40px 8px}
-.tl div{padding:0 0 22px 26px;position:relative}
-.tl div::before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--acc2)}
-.tl b{font:500 26px var(--serif);color:var(--acc2);margin-right:10px}
-.tl span{color:#d6e8e4}
-.tl small{display:block;color:#93aaa6;font-size:13px}
+#nav{position:fixed;inset:0 0 auto;z-index:10;display:flex;align-items:center;gap:20px;padding:16px 6vw}
+#nav .nm{font:600 20px var(--serif);margin-right:auto}
+#nav .links{display:flex;gap:20px}
+#nav .links button{font-size:13px;color:#cfe3df;opacity:.75}
+#nav .links button:hover,#nav .links button.on{opacity:1;color:var(--acc2)}
+.lang{display:flex;border:1px solid rgba(126,232,210,.45);border-radius:99px;overflow:hidden}
+.lang button{padding:5px 11px;font-size:12px}
+.lang button.on{background:var(--acc);color:#fff}
+.btn{padding:8px 16px;border-radius:99px;background:var(--acc);color:#fff;font-weight:600;font-size:13px}
+@media(max-width:900px){#nav .links{display:none}}
+#bar{position:fixed;top:0;left:0;height:2px;background:var(--acc2);z-index:11;width:0}
+.dots{position:fixed;right:22px;top:50%;transform:translateY(-50%);z-index:10;display:grid;gap:12px}
+.dots button{width:8px;height:8px;border-radius:50%;background:rgba(126,232,210,.3);transition:.3s}
+.dots button.on{background:var(--acc2);transform:scale(1.5)}
 
-footer{padding:70px 0;text-align:center}
-footer .sig{font:italic 500 30px var(--serif);color:var(--acc2);margin-bottom:12px}
+@media(max-width:800px){
+  .ov{padding:80px 20px 40px;align-items:flex-end}.ov.right{justify-content:flex-start}
+  .col{background:rgba(7,21,25,.72);backdrop-filter:blur(10px);padding:20px;border-radius:18px;max-width:none;width:100%}
+  #ov0 .col{background:none;backdrop-filter:none;padding:0}
+  .stats{gap:18px}.stats b{font-size:34px}.dots{display:none}
+  .card{flex-basis:200px}
+}
 
 #lb{position:fixed;inset:0;z-index:100;background:rgba(5,12,15,.95);display:none;align-items:center;justify-content:center;flex-direction:column;padding:30px}
 #lb.on{display:flex}
@@ -102,124 +88,83 @@ footer .sig{font:italic 500 30px var(--serif);color:var(--acc2);margin-bottom:12
 #lb p{color:#d6e8e4;margin-top:14px;font-size:15px;text-align:center;max-width:800px}
 #lb .x{position:absolute;top:14px;right:20px;font-size:34px;color:#fff}
 #lb .ar{position:absolute;top:50%;font-size:44px;color:#fff;opacity:.7;padding:20px}
-#lb .ar:hover{opacity:1}#lb .pv{left:6px}#lb .nx{right:6px}
-
-#pres{position:fixed;left:50%;bottom:18px;transform:translate(-50%,140%);z-index:60;display:flex;align-items:center;gap:14px;background:rgba(11,28,34,.95);color:#e3efec;padding:10px 12px 10px 20px;border-radius:99px;box-shadow:0 10px 40px rgba(0,0,0,.4);transition:.4s;max-width:calc(100vw - 32px)}
+#lb .pv{left:6px}#lb .nx{right:6px}
+#pres{position:fixed;left:50%;bottom:18px;transform:translate(-50%,160%);z-index:60;display:flex;align-items:center;gap:14px;background:rgba(7,21,25,.95);padding:10px 12px 10px 20px;border-radius:99px;border:1px solid rgba(126,232,210,.2);transition:.4s}
 #pres.on{transform:translate(-50%,0)}
 #pres .clock{font:600 22px var(--sans);font-variant-numeric:tabular-nums;color:var(--acc2);min-width:62px}
 #pres .clock.warn{color:#ff8a65}
-#pres .step{font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:240px}
-#pres .step small{display:block;color:#93aaa6;font-size:11px}
-#pres button{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.08);font-size:16px}
+#pres .step{font-size:13px;white-space:nowrap;max-width:220px;overflow:hidden;text-overflow:ellipsis}
+#pres .step small{display:block;color:var(--mute);font-size:11px}
+#pres button{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.08)}
 #pres button:hover{background:var(--acc)}
-#bar{position:fixed;top:0;left:0;height:3px;background:var(--acc);z-index:70;width:0}
-.reveal{opacity:0;transform:translateY(30px);transition:1s cubic-bezier(.2,.8,.2,1)}
-.reveal.in{opacity:1;transform:none}
-@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}}
-/* ===== 3D mode: dark glass over WebGL canvas ===== */
-#gl{position:fixed;inset:0;width:100%;height:100%;z-index:0;display:block}
-body{background:#081a1f;color:#e3efec}
-main,footer{position:relative;z-index:1}
-section,footer,#hero,#share,#students{background:transparent!important}
-section{min-height:100vh;display:flex;align-items:center}
-section>.wrap{width:100%}
-.mute{color:#93aaa6}
-.credo article,.card,.cr,.tl,.filt button{background:rgba(10,32,38,.6)!important;border:1px solid rgba(126,232,210,.18)!important;color:#e3efec;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
-.tl{padding:26px 20px 6px 30px;border-radius:20px;border-left:2px solid rgba(126,232,210,.3)!important;margin-left:0}
-.filt button.on{background:var(--acc)!important;border-color:var(--acc)!important}
-.card .ph{background:#fff}
-.stats div{backdrop-filter:blur(10px)}
-.scene-tag{position:fixed;right:22px;bottom:22px;z-index:2;font:600 11px var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--acc2);opacity:.75;pointer-events:none}
-@media(max-width:800px){.scene-tag{display:none}}
 </style>
 </head>
 <body>
 <canvas id="gl" aria-hidden="true"></canvas>
-<div class="scene-tag" id="sceneTag"></div>
+<div id="flash"></div>
 <div id="bar"></div>
 <nav id="nav">
   <div class="nm">М. Кожагулов</div>
-  <div class="links">
-    <a href="#credo" data-t="nCredo"></a><a href="#crit" data-t="nCrit"></a><a href="#share" data-t="nShare"></a><a href="#awards" data-t="nAw"></a><a href="#students" data-t="nSt"></a>
-  </div>
+  <div class="links" id="links"></div>
   <div class="lang"><button data-l="kz">ҚАЗ</button><button data-l="ru">РУС</button></div>
   <button class="btn" id="presBtn">▶ 5 мин</button>
 </nav>
+<div class="dots" id="dots"></div>
 
-<main>
-<section id="hero" data-step="0" data-sec="35">
-  <div class="wrap">
-    <div class="in">
-      <div class="k" data-t="contest"></div>
-      <h1>Кожагулов Меирбек <span>Сансызбаевич</span></h1>
-      <div class="sub" data-t="subj"></div>
-      <div class="sub" data-t="school" style="opacity:.8;font-size:15px"></div>
-      <p class="motto" data-t="motto"></p>
-      <a class="btn" href="#credo" data-t="start"></a>
-      <div class="stats">
-        <div><b>9</b><span data-t="st0"></span></div>
-        <div><b>11</b><span data-t="st1"></span></div>
-        <div><b>7</b><span data-t="st2"></span></div>
-        <div><b>3</b><span data-t="st3"></span></div>
-      </div>
-    </div>
-    <div class="photo"><img src="img/hero.jpg" alt=""></div>
-  </div>
-</section>
+<!-- scroll spacers: one per chapter -->
+<div class="chap" style="height:240vh" data-sec="35"></div>
+<div class="chap" style="height:260vh" data-sec="35"></div>
+<div class="chap" style="height:380vh" data-sec="80"></div>
+<div class="chap" style="height:360vh" data-sec="55"></div>
+<div class="chap" style="height:420vh" data-sec="50"></div>
+<div class="chap" style="height:260vh" data-sec="30"></div>
+<div class="chap" style="height:200vh" data-sec="15"></div>
 
-<section id="credo" data-step="1" data-sec="35">
-  <div class="wrap">
-    <div class="k reveal"><span class="num">01</span> · <span data-t="credoK"></span></div>
-    <h2 class="reveal" data-t="credoH"></h2>
-    <div class="credo">
-      <div class="pic reveal"><img class="z" src="img/board.jpg" data-title="" alt=""></div>
-      <article class="reveal"><div class="k" data-t="misK"></div><p data-t="mis"></p></article>
-      <article class="reveal"><div class="k" data-t="goalK"></div><p data-t="goal"></p></article>
-    </div>
-  </div>
-</section>
+<!-- fixed overlays, opacity driven by scroll -->
+<div class="ov" id="ov0"><div class="col">
+  <div class="k" data-t="contest"></div>
+  <h1 class="big" style="margin-top:20px">Кожагулов<br>Меирбек <span>Сансызбаевич</span></h1>
+  <div class="sub" data-t="subj"></div>
+  <div class="stats">
+    <div><b>9</b><span data-t="st0"></span></div><div><b>11</b><span data-t="st1"></span></div>
+    <div><b>7</b><span data-t="st2"></span></div><div><b>3</b><span data-t="st3"></span></div>
+  </div></div>
+  <div class="hint"><span data-t="scroll"></span><i></i></div>
+</div>
 
-<section id="crit" class="dark" data-step="2" data-sec="90">
-  <div class="wrap">
-    <div class="k reveal"><span class="num">02</span> · <span data-t="critK"></span></div>
-    <h2 class="reveal" data-t="critH"></h2>
-    <div class="crit" id="critList"></div>
-  </div>
-</section>
+<div class="ov right" id="ov1"><div class="col">
+  <img class="av z" src="img/hero.jpg" data-title="" alt="">
+  <div class="k" data-t="credoK"></div>
+  <p class="quote" style="margin-top:16px" data-t="motto"></p>
+  <div class="lines"><p data-t="mis"></p><p data-t="goal"></p></div>
+</div></div>
 
-<section id="share" class="dark" style="background:#0f262c" data-step="3" data-sec="60">
-  <div class="wrap">
-    <div class="k reveal"><span class="num">03</span> · <span data-t="shK"></span></div>
-    <h2 class="reveal" data-t="shH"></h2>
-    <div class="tl" id="tl"></div>
-    <div class="gal" id="gE"></div>
-  </div>
-</section>
+<div class="ov" id="ov2"><div class="col" style="max-width:560px">
+  <div class="k" data-t="critK"></div><h2 data-t="critH"></h2>
+  <div id="critList"></div>
+</div></div>
 
-<section id="awards" data-step="4" data-sec="50">
-  <div class="wrap">
-    <div class="k reveal"><span class="num">04</span> · <span data-t="aK"></span></div>
-    <h2 class="reveal" data-t="aH"></h2>
-    <div class="filt" id="filt"></div>
-    <div class="gal" id="gA"></div>
-  </div>
-</section>
+<div class="ov right" id="ov3"><div class="col" style="max-width:560px">
+  <div class="k" data-t="shK"></div><h2 data-t="shH"></h2>
+  <div id="tl"></div>
+  <div class="thumbs" id="thumbs"></div>
+</div></div>
 
-<section id="students" style="background:var(--paper)" data-step="5" data-sec="25">
-  <div class="wrap">
-    <div class="k reveal"><span class="num">05</span> · <span data-t="stK"></span></div>
-    <h2 class="reveal" data-t="stH"></h2>
-    <div class="gal" id="gS"></div>
-  </div>
-</section>
-</main>
+<div class="ov" id="ov4">
+  <div class="head"><div class="k" data-t="aK"></div><h2 data-t="aH"></h2></div>
+  <div class="strip" id="strip"></div>
+</div>
 
-<footer class="dark" data-step="6" data-sec="5">
-  <div class="wrap">
-    <div class="sig" data-t="thanks"></div>
-    <p class="mute" data-t="foot"></p>
-  </div>
-</footer>
+<div class="ov" id="ov5"><div class="col">
+  <div class="k" data-t="stK"></div><h2 data-t="stH"></h2>
+  <div class="cards3" id="gS"></div>
+</div></div>
+
+<div class="ov" id="ov6"><div>
+  <div class="k" data-t="finK"></div>
+  <h2 class="big" style="margin:22px 0" data-t="thanks"></h2>
+  <p class="sub" data-t="foot"></p>
+</div></div>
 
 <div id="lb"><button class="x" aria-label="close">×</button><button class="ar pv">‹</button><button class="ar nx">›</button><img id="lbI" alt=""><p id="lbT"></p></div>
 <div id="pres"><div class="clock" id="clock">5:00</div><div class="step" id="pStep"></div>
@@ -227,99 +172,100 @@ section>.wrap{width:100%}
 
 <script>
 const T={
-kz:{contest:"«Үздік химия пәні мұғалімі – 2026»",subj:"Химия пәні мұғалімі · Педагог-модератор",school:"№81 жалпы білім беретін орта мектеп",
-motto:"«Әр оқушының бойындағы қабілетті ашу, ғылымға қызығушылығын ояту»",start:"Портфолионы ашу ↓",
-st0:"жыл педагогикалық өтіл",st1:"марапат пен сертификат",st2:"рет тәжірибе бөлісті",st3:"оқушы жүлдесі",
-nCredo:"Ұстаным",nCrit:"Критерийлер",nShare:"Тәжірибе",nAw:"Марапаттар",nSt:"Оқушылар",
-credoK:"Педагогикалық ұстаным",credoH:"Химия — <em>өмірдің тілі</em>",
-misK:"Ұстанымым",mis:"Алған білімін <em>өмірде қолдана алатын</em> тұлға қалыптастыру.",
-goalK:"Мақсатым",goal:"Химиялық сауаттылықты, <em>тәжірибелік және зерттеушілік</em> қабілетті дамыту.",
-critK:"Байқау критерийлері",critH:"Бес критерий — <em>бес дәлел</em>",
-shK:"Тәжірибе тарату",shH:"Ауыл мектебінен — <em>республикалық алаңға</em>",
-aK:"Кәсіби өсу",aH:"Марапаттар",stK:"Тәлімгерлік",stH:"Оқушыларымның <em>жеңістері</em>",
-all:"Барлығы",dip:"Дипломдар",thx:"Алғыс хаттар",cert:"Сертификаттар",cls:"сынып",
+kz:{contest:"«Үздік химия пәні мұғалімі – 2026»",subj:"Химия пәні мұғалімі · Педагог-модератор · №81 жалпы білім беретін орта мектеп",scroll:"Айналдырыңыз",
+st0:"жыл өтіл",st1:"марапат",st2:"тәжірибе бөлісу",st3:"оқушы жүлдесі",
+credoK:"Педагогикалық ұстаным",motto:"«Әр оқушының бойындағы қабілетті ашу, <em>ғылымға қызығушылығын</em> ояту»",
+mis:"Алған білімін өмірде қолдана алатын тұлға қалыптастыру.",goal:"Химиялық сауаттылықты, тәжірибелік және зерттеушілік қабілетті дамыту.",
+critK:"Байқау критерийлері",critH:"Бес критерий — <em>бес дәлел</em>",shK:"Тәжірибе тарату",shH:"Ауыл мектебінен — <em>республикаға</em>",
+aK:"Кәсіби өсу",aH:"Марапаттар",stK:"Тәлімгерлік",stH:"Оқушыларымның <em>жеңістері</em>",finK:"Химия — өмірдің тілі",
+thanks:"Рахмет!",foot:"Кожагулов Меирбек Сансызбаевич · №81 ЖОББМ · 2026",cls:"сынып",
 L:{int:"Халықаралық",rep:"Республикалық",reg:"Облыстық",dis:"Аудандық"},
-thanks:"Назарларыңызға рахмет!",foot:"Кожагулов Меирбек Сансызбаевич · №81 ЖОББМ · 2026",
-steps:["Таныстыру","Ұстаным","5 критерий","Тәжірибе тарату","Марапаттар","Оқушылар","Қорытынды"]},
-ru:{contest:"«Лучший учитель химии – 2026»",subj:"Учитель химии · Педагог-модератор",school:"КГУ «Средняя общеобразовательная школа №81»",
-motto:"«Раскрыть способности каждого ученика и пробудить интерес к науке»",start:"Открыть портфолио ↓",
-st0:"лет педагогического стажа",st1:"наград и сертификатов",st2:"выступлений с опытом",st3:"призовых места учеников",
-nCredo:"Кредо",nCrit:"Критерии",nShare:"Опыт",nAw:"Награды",nSt:"Ученики",
-credoK:"Педагогическое кредо",credoH:"Химия — <em>язык жизни</em>",
-misK:"Мой принцип",mis:"Воспитать личность, которая <em>применяет знания в жизни</em>.",
-goalK:"Моя цель",goal:"Развивать химическую грамотность, <em>практические и исследовательские</em> навыки.",
-critK:"Критерии конкурса",critH:"Пять критериев — <em>пять доказательств</em>",
-shK:"Распространение опыта",shH:"Из сельской школы — <em>на республиканский уровень</em>",
-aK:"Профессиональный рост",aH:"Награды",stK:"Наставничество",stH:"Победы моих <em>учеников</em>",
-all:"Все",dip:"Дипломы",thx:"Благодарности",cert:"Сертификаты",cls:"класс",
+nav:["Кіріспе","Ұстаным","Критерийлер","Тәжірибе","Марапаттар","Оқушылар","Соңы"]},
+ru:{contest:"«Лучший учитель химии – 2026»",subj:"Учитель химии · Педагог-модератор · КГУ «СОШ №81»",scroll:"Листайте",
+st0:"лет стажа",st1:"наград",st2:"выступлений с опытом",st3:"призовых места учеников",
+credoK:"Педагогическое кредо",motto:"«Раскрыть способности каждого ученика и пробудить <em>интерес к науке</em>»",
+mis:"Воспитать личность, которая применяет знания в жизни.",goal:"Развивать химическую грамотность, практические и исследовательские навыки.",
+critK:"Критерии конкурса",critH:"Пять критериев — <em>пять доказательств</em>",shK:"Распространение опыта",shH:"Из сельской школы — <em>на уровень республики</em>",
+aK:"Профессиональный рост",aH:"Награды",stK:"Наставничество",stH:"Победы моих <em>учеников</em>",finK:"Химия — язык жизни",
+thanks:"Спасибо!",foot:"Кожагулов Меирбек Сансызбаевич · СОШ №81 · 2026",cls:"класс",
 L:{int:"Международный",rep:"Республиканский",reg:"Областной",dis:"Районный"},
-thanks:"Благодарю за внимание!",foot:"Кожагулов Меирбек Сансызбаевич · СОШ №81 · 2026",
-steps:["Знакомство","Кредо","5 критериев","Распространение опыта","Награды","Ученики","Итог"]}
+nav:["Начало","Кредо","Критерии","Опыт","Награды","Ученики","Итог"]}
 };
-/* criterion, evidence, image */
-const CRIT=[
-[["Функционалдық сауаттылық","Функциональная грамотность"],["Химия — күнделікті өмірмен байланыста. PISA конференциясында тәжірибе бөлісті (2024).","Химия в связи с повседневной жизнью. Делился опытом на конференции по PISA (2024)."],"a05"],
-[["Саралап оқыту","Дифференциация"],["Біріктірілген сыныптарда әр оқушының жеке ерекшелігін ескеру.","Учёт особенностей каждого ученика в классах-комплектах."],"board"],
-[["Бағалау және кері байланыс","Оценивание и обратная связь"],["Оқушы сұрақ қояды, тәжірибе жасайды, өз қорытындысын дәлелдейді.","Ученик задаёт вопрос, ставит опыт и доказывает свой вывод."],"hero"],
-[["Цифр және ЖИ","Цифра и ИИ"],["«Цифрлық ресурстарды пайдалану әдістері» — республикалық семинар спикері (2025).","«Методы использования цифровых ресурсов» — спикер республиканского семинара (2025)."],"ev2"],
-[["Зерттеу және шығармашылық","Исследование и творчество"],["Ы. Алтынсарин академиясының STEM жұмыс тобының мүшесі (2026).","Член рабочей группы по STEM Академии им. Ы. Алтынсарина (2026)."],"ev5"]];
-const TL=[["2024",["Республикалық Тамыз саммиті, Астана — спикер","Республиканский Августовский саммит, Астана — спикер"],["«Цифрлық технологиялар арқылы шағын жинақты мектептердің әлеуетін дамыту»","«Развитие потенциала малокомплектных школ через цифровые технологии»"]],
-["2025",["Халықаралық ғылыми-практикалық конференция","Международная научно-практическая конференция"],["«Ауыл мектебінің қазіргі жағдайы», Астана–Павлодар","«Современное состояние сельской школы», Астана–Павлодар"]],
-["2025",["Республикалық семинар, Ақтөбе","Республиканский семинар, Актобе"],["«Цифрлық ресурстарды пайдалану әдістері»","«Методы использования цифровых ресурсов»"]],
-["2026",["Облыстық семинарлар, Ақтөбе","Областные семинары, Актобе"],["«Ауыл мектебі — сапа алаңы» жобасы","Проект «Сельская школа — площадка качества»"]],
-["2026",["Ы. Алтынсарин академиясы — жұмыс тобы","Академия им. Ы. Алтынсарина — рабочая группа"],["Біріктірілген сыныптарда STEM бойынша әдістемелік ұсынымдар","Методические рекомендации по STEM для классов-комплектов"]]];
-const EV=[["ev1",["Тамыз саммиті 2024 · бағдарлама","Августовский саммит 2024 · программа"]],["ev2",["Республикалық семинар 2025 · бағдарлама","Республиканский семинар 2025 · программа"]],["ev3",["Облыстық семинар 2026 · бағдарлама","Областной семинар 2026 · программа"]],["ev4",["Облыстық онлайн-семинар 23.01.2026","Областной онлайн-семинар 23.01.2026"]],["ev5",["STEM жұмыс тобы · бұйрық 2026","Рабочая группа STEM · приказ 2026"]]];
-const AW=[["dip","reg","2021","Химия мұғалімдерінің облыстық пәндік олимпиадасы — III орын","Областная предметная олимпиада учителей химии — III место"],
-["dip","dis","2020","«Дарынды балаларға — талантты ұстаз» олимпиадасы — II дәреже","Олимпиада «Одарённым детям — талантливый учитель» — II степень"],
-["thx","dis","2021","Құрмет грамотасы, Қобда аудандық білім бөлімі","Почётная грамота, Кобдинский районный отдел образования"],
-["cert","int","2023","57-ші Халықаралық Менделеев олимпиадасы: химия мұғалімдеріне семинар","57-я Международная Менделеевская олимпиада: семинар для учителей химии"],
-["thx","rep","2024","«Өрлеу»: PISA республикалық конференциясы","«Өрлеу»: республиканская конференция по PISA"],
-["thx","rep","2024","Ы. Алтынсарин академиясы: Тамыз саммитінің спикері","Академия им. Ы. Алтынсарина: спикер Августовского саммита"],
-["thx","dis","2024","Аудандық Тамыз саммиті","Районный Августовский саммит"],
-["thx","reg","2024","Ақтөбе облыстық әдістемелік орталығы","Актюбинский областной методический центр"],
-["cert","int","2025","Халықаралық конференция «Ауыл мектебінің қазіргі жағдайы»","Международная конференция «Современное состояние сельской школы»"],
-["thx","rep","2025","ҚР Оқу-ағарту министрлігі, Орта білім беру комитеті","Министерство просвещения РК, Комитет среднего образования"],
-["cert","rep","2025","«Өрлеу»: «SMART-оқыту» курсы, 80 сағат","«Өрлеу»: курс «SMART-обучение», 80 часов"]];
+const CRIT=[[["Функционалдық сауаттылық","Функциональная грамотность"],["Химия — күнделікті өмірмен байланыста; PISA конференциясы, 2024","Химия в связи с жизнью; конференция по PISA, 2024"]],
+[["Саралап оқыту","Дифференциация"],["Біріктірілген сыныптарда әр оқушыға — өз деңгейі","В классах-комплектах каждому — свой уровень"]],
+[["Бағалау және кері байланыс","Оценивание и обратная связь"],["Оқушы тәжірибе жасап, қорытындысын дәлелдейді","Ученик ставит опыт и доказывает вывод"]],
+[["Цифр және ЖИ","Цифра и ИИ"],["Цифрлық ресурстар бойынша республикалық семинар спикері, 2025","Спикер республиканского семинара по цифровым ресурсам, 2025"]],
+[["Зерттеу және шығармашылық","Исследование и творчество"],["Ы. Алтынсарин академиясының STEM жұмыс тобы, 2026","Рабочая группа STEM Академии им. Ы. Алтынсарина, 2026"]]];
+const TL=[["2024",["Республикалық Тамыз саммиті, Астана — спикер","Республиканский Августовский саммит, Астана — спикер"]],
+["2025",["Халықаралық конференция, Астана–Павлодар","Международная конференция, Астана–Павлодар"]],
+["2025",["Республикалық семинар, Ақтөбе","Республиканский семинар, Актобе"]],
+["2026",["Облыстық семинарлар, Ақтөбе","Областные семинары, Актобе"]],
+["2026",["Ы. Алтынсарин академиясы — STEM жұмыс тобы","Академия им. Ы. Алтынсарина — рабочая группа STEM"]]];
+const EV=[["ev1",["Тамыз саммиті 2024","Августовский саммит 2024"]],["ev2",["Республикалық семинар 2025","Республиканский семинар 2025"]],["ev3",["Облыстық семинар 2026","Областной семинар 2026"]],["ev4",["Онлайн-семинар 23.01.2026","Онлайн-семинар 23.01.2026"]],["ev5",["STEM жұмыс тобы, бұйрық 2026","Рабочая группа STEM, приказ 2026"]]];
+const AW=[["reg","2021","Химия мұғалімдерінің облыстық олимпиадасы — III орын","Областная олимпиада учителей химии — III место"],
+["dis","2020","«Дарынды балаларға — талантты ұстаз» — II дәреже","«Одарённым детям — талантливый учитель» — II степень"],
+["dis","2021","Құрмет грамотасы, Қобда аудандық білім бөлімі","Почётная грамота, Кобдинский РОО"],
+["int","2023","57-ші Халықаралық Менделеев олимпиадасы: мұғалімдерге семинар","57-я Международная Менделеевская олимпиада: семинар для учителей"],
+["rep","2024","«Өрлеу»: PISA республикалық конференциясы","«Өрлеу»: республиканская конференция по PISA"],
+["rep","2024","Ы. Алтынсарин академиясы: Тамыз саммитінің спикері","Академия им. Ы. Алтынсарина: спикер Августовского саммита"],
+["dis","2024","Аудандық Тамыз саммиті","Районный Августовский саммит"],
+["reg","2024","Ақтөбе облыстық әдістемелік орталығы","Актюбинский областной методический центр"],
+["int","2025","Халықаралық конференция «Ауыл мектебінің қазіргі жағдайы»","Международная конференция «Современное состояние сельской школы»"],
+["rep","2025","ҚР Оқу-ағарту министрлігі, Орта білім беру комитеті","Министерство просвещения РК, Комитет среднего образования"],
+["rep","2025","«Өрлеу»: «SMART-оқыту» курсы, 80 сағат","«Өрлеу»: курс «SMART-обучение», 80 часов"]];
 const ST=[["Умиржанова Аружан","","reg",["I дәреже","I степень"],"2023",["«Аламан» облыстық олимпиадасы, химия","Областная олимпиада «Аламан», химия"]],
-["Умиржанова Аружан","9","dis",["III орын","III место"],"2024",["«Аламан» олимпиадасы, аудандық кезең","Олимпиада «Аламан», районный этап"]],
-["Елубаев Ұлан","10","dis",["III орын","III место"],"2020",["Республикалық пән олимпиадасы, химия, аудандық кезең","Республиканская олимпиада, химия, районный этап"]]];
+["Умиржанова Аружан","9","dis",["III орын","III место"],"2024",["«Аламан», аудандық кезең","«Аламан», районный этап"]],
+["Елубаев Ұлан","10","dis",["III орын","III место"],"2020",["Республикалық олимпиада, химия, аудандық кезең","Республиканская олимпиада, химия, районный этап"]]];
 
 let lang="kz";try{const s=localStorage.getItem("lang");if(s==="ru"||s==="kz")lang=s}catch(e){}
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],pad=i=>String(i+1).padStart(2,"0"),q=s=>s.replace(/"/g,"&quot;");
+const chaps=$$(".chap"),ovs=$$(".ov");
+let presOn=false,cur=0,left=300,tick;
 function render(){
   const t=T[lang],K=lang==="kz"?0:1;document.documentElement.lang=K?"ru":"kk";
   $$("[data-t]").forEach(e=>{const x=t[e.dataset.t];if(typeof x==="string")e.innerHTML=x});
   $$(".lang button").forEach(b=>b.classList.toggle("on",b.dataset.l===lang));
-  $("#critList").innerHTML=CRIT.map((c,i)=>`<div class="cr reveal"><div class="n">0${i+1}</div><div><h3>${c[0][K]}</h3><p>${c[1][K]}</p></div><img class="z" src="img/${c[2]}.jpg" data-title="${q(c[0][K])}" alt="" loading="lazy"></div>`).join("");
-  $("#tl").innerHTML=TL.map(x=>`<div class="reveal"><b>${x[0]}</b><span>${x[1][K]}</span><small>${x[2][K]}</small></div>`).join("");
-  $("#gE").innerHTML=EV.map(e=>`<div class="card"><div class="ph"><img class="z" src="img/${e[0]}.jpg" data-title="${q(e[1][K])}" alt="" loading="lazy"></div><div class="cap">${e[1][K]}</div></div>`).join("");
-  $("#filt").innerHTML=[["all",t.all],["dip",t.dip],["thx",t.thx],["cert",t.cert]].map((x,i)=>`<button data-f="${x[0]}" class="${i?"":"on"}">${x[1]}</button>`).join("");
-  $("#gA").innerHTML=AW.map((a,i)=>`<div class="card" data-type="${a[0]}"><div class="ph"><img class="z" loading="lazy" src="img/a${pad(i)}.jpg" data-title="${a[2]} · ${q(a[3+K])}" alt=""></div><div class="cap"><b><span>${t.L[a[1]]}</span><span>${a[2]}</span></b>${a[3+K]}</div></div>`).join("");
-  $("#gS").innerHTML=ST.map((s,i)=>`<div class="card"><div class="ph"><img class="z" loading="lazy" src="img/st${i+1}.jpg" data-title="${s[0]} — ${q(s[5][K])}" alt=""></div><div class="cap"><b><span>${s[3][K]} · ${t.L[s[2]]}</span><span>${s[4]}</span></b><strong>${s[0]}</strong>${s[1]?s[1]+" "+t.cls+" · ":""}${s[5][K]}</div></div>`).join("");
-  $$("#filt button").forEach(b=>b.onclick=()=>{$$("#filt button").forEach(x=>x.classList.toggle("on",x===b));$$("#gA .card").forEach(c=>c.classList.toggle("hide",b.dataset.f!=="all"&&c.dataset.type!==b.dataset.f))});
-  observe();if(presOn)pUpd();
+  $("#links").innerHTML=t.nav.slice(1,6).map((n,i)=>`<button data-go="${i+1}">${n}</button>`).join("");
+  $("#dots").innerHTML=t.nav.map((n,i)=>`<button data-go="${i}" title="${n}" aria-label="${n}"></button>`).join("");
+  $("#critList").innerHTML=CRIT.map((c,i)=>`<div class="it"><b>0${i+1}</b><div><h3>${c[0][K]}</h3><p>${c[1][K]}</p></div></div>`).join("");
+  $("#tl").innerHTML=TL.map(x=>`<div class="it"><b style="font-size:24px">${x[0]}</b><div><h3 style="font-size:21px">${x[1][K]}</h3></div></div>`).join("");
+  $("#thumbs").innerHTML=EV.map(e=>`<img class="z" src="img/${e[0]}.jpg" data-title="${q(e[1][K])}" alt="${q(e[1][K])}">`).join("");
+  $("#strip").innerHTML=AW.map((a,i)=>`<div class="card"><div class="ph"><img class="z" src="img/a${pad(i)}.jpg" data-title="${a[1]} · ${q(a[2+K])}" alt=""></div><div class="cap"><b><span>${t.L[a[0]]}</span><span>${a[1]}</span></b>${a[2+K]}</div></div>`).join("");
+  $("#gS").innerHTML=ST.map((s,i)=>`<div class="card"><div class="ph"><img class="z" src="img/st${i+1}.jpg" data-title="${s[0]} — ${q(s[5][K])}" alt=""></div><div class="cap"><b><span>${s[3][K]} · ${t.L[s[2]]}</span><span>${s[4]}</span></b><strong>${s[0]}</strong>${s[1]?s[1]+" "+t.cls+" · ":""}${s[5][K]}</div></div>`).join("");
+  $$("[data-go]").forEach(b=>b.onclick=()=>go(+b.dataset.go));
+  if(presOn)pUpd();
 }
 $$(".lang button").forEach(b=>b.onclick=()=>{lang=b.dataset.l;try{localStorage.setItem("lang",lang)}catch(e){}render()});
-let io;function observe(){io&&io.disconnect();io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.12});$$(".reveal:not(.in)").forEach(e=>io.observe(e))}
-addEventListener("scroll",()=>{$("#nav").classList.toggle("solid",scrollY>40);const h=document.documentElement;$("#bar").style.width=(scrollY/(h.scrollHeight-innerHeight)*100)+"%"},{passive:true});
+
+/* overlays follow the 3D progress (window.__G from scene3d.js; fallback = raw scroll) */
+const sm=(a,b,v)=>{const x=Math.min(1,Math.max(0,(v-a)/(b-a)));return x*x*(3-2*x)};
+function rawG(){const y=scrollY;for(let i=0;i<chaps.length;i++){const a=chaps[i].offsetTop,b=i<chaps.length-1?chaps[i+1].offsetTop:a+chaps[i].offsetHeight-innerHeight;if(y<b||i===chaps.length-1)return i+Math.min(1,Math.max(0,(y-a)/Math.max(1,b-a)))}return 0}
+let lastK=-1;
+(function loop(){
+  const G=window.__G!==undefined&&document.documentElement.classList.contains("gl-on")?window.__G:rawG();
+  const k=Math.min(ovs.length-1,Math.floor(G)),u=G-k;
+  ovs.forEach((o,i)=>{let op=0;if(i===k){const fin=i===0?1:sm(.12,.24,u),fout=i===ovs.length-1?1:1-sm(.72,.8,u);op=fin*fout}
+    o.style.opacity=op.toFixed(3);o.style.visibility=op>0.01?"visible":"hidden";o.classList.toggle("live",op>.5);
+    o.style.transform=`translateY(${((1-op)*(i===k&&u>.5?-30:30)).toFixed(1)}px)`});
+  const v=sm(.18,.62,u),its=ovs[k].querySelectorAll(".it");its.forEach((e,j)=>e.classList.toggle("on",v>=j/its.length-.001&&u>.14));
+  if(k===4){const s=$("#strip"),max=Math.max(0,s.scrollWidth-innerWidth+innerWidth*.12);s.style.transform=`translateX(${(-max*sm(.2,.72,u)).toFixed(1)}px)`}
+  if(k!==lastK){$$("#dots button").forEach((b,i)=>b.classList.toggle("on",i===k));$$("#links button").forEach(b=>b.classList.toggle("on",+b.dataset.go===k));lastK=k;if(presOn){cur=k;pUpd()}}
+  $("#bar").style.width=(scrollY/(document.documentElement.scrollHeight-innerHeight)*100)+"%";
+  requestAnimationFrame(loop)})();
 
 /* lightbox */
 let lbList=[],lbI=0;
 function lbShow(){const e=lbList[lbI];$("#lbI").src=e.src;$("#lbT").textContent=e.dataset.title||"";$("#lb").classList.add("on")}
 function lbClose(){$("#lb").classList.remove("on")}
-document.addEventListener("click",e=>{const c=e.target.closest(".card,.cr,.pic");const z=c?c.querySelector("img.z"):null;if(!z)return;
-  const scope=z.closest(".gal,.crit");lbList=scope?[...scope.querySelectorAll("img.z")].filter(x=>!x.closest(".hide")):[z];lbI=lbList.indexOf(z);lbShow()});
+document.addEventListener("click",e=>{const c=e.target.closest(".card");const z=c?c.querySelector("img.z"):(e.target.matches("img.z")?e.target:null);if(!z)return;
+  const scope=z.closest("#strip,#gS,#thumbs");lbList=scope?[...scope.querySelectorAll("img.z")]:[z];lbI=lbList.indexOf(z);lbShow()});
 $("#lb .x").onclick=lbClose;$("#lb").onclick=e=>{if(e.target.id==="lb")lbClose()};
 $("#lb .pv").onclick=()=>{lbI=(lbI-1+lbList.length)%lbList.length;lbShow()};$("#lb .nx").onclick=()=>{lbI=(lbI+1)%lbList.length;lbShow()};
 
-/* scene caption (bottom-right) */
-const SCN=[["Кофеин C₈H₁₀N₄O₂","Кофеин C₈H₁₀N₄O₂"],["Атом құрылысы","Строение атома"],["Бензол C₆H₆","Бензол C₆H₆"],["NaCl кристалы","Кристалл NaCl"],["Менделеев кестесі","Таблица Менделеева"],["Су молекулалары H₂O","Молекулы воды H₂O"],["ДНҚ","ДНК"]];
-$$("[data-step]").forEach((s,i)=>new IntersectionObserver(es=>{if(es[0].isIntersecting)$("#sceneTag").textContent="◆ "+SCN[i][lang==="kz"?0:1]},{threshold:.5}).observe(s));
-
-/* 5-minute presentation mode */
-const steps=$$("[data-step]");let presOn=false,cur=0,left=300,tick;
-function go(i){cur=Math.max(0,Math.min(steps.length-1,i));steps[cur].scrollIntoView({behavior:"smooth"});pUpd()}
-function pUpd(){$("#pStep").innerHTML=`${cur+1}/${steps.length} · ${T[lang].steps[cur]}<small>≈ ${steps[cur].dataset.sec} сек</small>`}
+/* navigation + 5-minute mode */
+function go(i){cur=Math.max(0,Math.min(chaps.length-1,i));const c=chaps[cur],nx=chaps[cur+1];const span=(nx?nx.offsetTop:c.offsetTop+c.offsetHeight-innerHeight)-c.offsetTop;
+  scrollTo({top:c.offsetTop+(cur===0?0:span*.48),behavior:"smooth"});if(presOn)pUpd()}
+function pUpd(){$("#pStep").innerHTML=`${cur+1}/${chaps.length} · ${T[lang].nav[cur]}<small>≈ ${chaps[cur].dataset.sec} сек</small>`}
 const fmt=s=>Math.floor(s/60)+":"+String(s%60).padStart(2,"0");
 function presStart(){presOn=true;left=300;$("#pres").classList.add("on");$("#clock").textContent=fmt(left);$("#clock").classList.remove("warn");go(0);
   clearInterval(tick);tick=setInterval(()=>{left--;$("#clock").textContent=left>=0?fmt(left):"−"+fmt(-left);$("#clock").classList.toggle("warn",left<=30)},1000)}
@@ -328,7 +274,6 @@ $("#presBtn").onclick=()=>presOn?presEnd():presStart();
 $("#pNext").onclick=()=>go(cur+1);$("#pPrev").onclick=()=>go(cur-1);$("#pEnd").onclick=presEnd;
 addEventListener("keydown",e=>{if($("#lb").classList.contains("on")){if(e.key==="Escape")lbClose();if(e.key==="ArrowRight")$("#lb .nx").click();if(e.key==="ArrowLeft")$("#lb .pv").click();return}
   if(!presOn)return;if(["ArrowDown","PageDown"," ","ArrowRight"].includes(e.key)){e.preventDefault();go(cur+1)}if(["ArrowUp","PageUp","ArrowLeft"].includes(e.key)){e.preventDefault();go(cur-1)}if(e.key==="Escape")presEnd()});
-steps.forEach(s=>new IntersectionObserver(es=>{if(es[0].isIntersecting&&presOn){cur=steps.indexOf(s);pUpd()}},{threshold:.35}).observe(s));
 render();
 </script>
 <script type="module" src="scene3d.js"></script>
